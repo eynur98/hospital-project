@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->nullable();
             $table->enum('status',['1','0'])->default('1');
+            $table->enum('at_home',['1','0'])->default('1');
             $table->unsignedInteger('order')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
