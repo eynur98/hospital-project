@@ -10,5 +10,5 @@ class DoctorPosition extends Model implements TranslatableContract
 {
     use HasFactory, Translatable;
     public $translatedAttributes = ['title'];
-    protected $fillable = ['news_category_id','slug','order','image','status'];
+    protected $fillable = ['slug','order','status'];
 }
