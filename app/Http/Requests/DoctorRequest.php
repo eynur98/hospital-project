@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Language;
 use Illuminate\Support\Arr;
-class CategoryRequest extends FormRequest
+class PartnerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -34,7 +34,7 @@ class CategoryRequest extends FormRequest
             $return[] = [
                
                 'title:' . $lang['code'] => ['required', 'max:255'],
-               
+                'description:' . $lang['code'] => ['nullable'],
            
             ];
 
@@ -42,11 +42,11 @@ class CategoryRequest extends FormRequest
         }
 
         $return[] = [
-            'parent_id'=>['nullable'],
-            'home'=>['max:11'],
+            'doctor_position_id'=>['required','max:11'],
             'slug' => ['max:255'],
             'status'=>['max:2'],
             'order'=>['max:11'],
+            'at_home'=>['max:2'],
             'image'=>['max:2024']
 
         ];

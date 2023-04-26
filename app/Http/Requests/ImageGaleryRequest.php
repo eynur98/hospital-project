@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CheckoutRequest extends FormRequest
+class ImageGaleryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CheckoutRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'status'=>['max:2'],
+            'order'=>['max:11'],
+            'at_home'=>['max:2'],
+            'image'=>['max:2024']
         ];
     }
 }

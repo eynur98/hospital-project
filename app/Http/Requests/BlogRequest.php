@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use App\Models\Language;
-class ProjectRequest extends FormRequest
+class BlogRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,6 +28,7 @@ class ProjectRequest extends FormRequest
             $return = [];
 
             $active_langs = Language::get(); 
+   
             foreach ($active_langs as $lang){
           
                 $return[] = [
@@ -41,7 +42,7 @@ class ProjectRequest extends FormRequest
             }
     
             $return[] = [
-                'project_category_id'=>['required','max:11'],
+               
                 'slug' => ['max:255'],
                 'status'=>['max:2'],
                 'order'=>['max:11'],
@@ -49,6 +50,7 @@ class ProjectRequest extends FormRequest
 
             ];
   
+    
             return Arr::collapse($return);
         
     }

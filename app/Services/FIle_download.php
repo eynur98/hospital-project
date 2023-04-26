@@ -6,11 +6,11 @@ class FIle_download
 {
 public function  download($data){
 
-    if($data->hasFile('file')){
+    if($data->hasFile('image')){
 
-        $imgExtension = $data->file->getClientOriginalExtension();
+        $imgExtension = $data->image->getClientOriginalExtension();
         $imageName = time() . "-" . uniqid() . '.' . $imgExtension;
-        $data->file->move(public_path('uploads'),$imageName);
+        $data->image->move(public_path('uploads'),$imageName);
 
       return 'uploads/'.$imageName;
     };

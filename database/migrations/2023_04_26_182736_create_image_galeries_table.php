@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('image_galeries', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->string('surname')->nullable();
-            $table->string('email')->nullable();
-            $table->text('text')->nullable();
-            $table->enum('status',['1','0'])->default('0');
-          
+            $table->enum('status',['1','0'])->default('1');
+            $table->enum('at_home',['1','0'])->default('1');
+            $table->string('image')->nullable();
+            $table->unsignedInteger('order')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('image_galeries');
     }
 };
