@@ -28,7 +28,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Başlıq</th>
-                                    <th scope="col">Foto</th>
+                                   
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -38,8 +38,8 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->translate('az')->title}}</td>
-                                        <td> <img src="/{{$partner->image}}" width="50" height="50"> </td>
+                                        <td>{{$partner->translate('en')->title}}</td>
+                                        
                                         <td>{{$partner->status==1?' Aktiv ':'Passiv'}}</td>
                                         <td>
                                             <div class="flex-wrap gap-3 hstack">
@@ -106,7 +106,7 @@
                                 </div>
                                 
                                     
-                                    <div class="row mb-3">
+                                    {{-- <div class="row mb-3">
                                         <div class="col-lg-3">
                                             <label for="foto" class="form-label">Foto</label>
                                         </div>
@@ -116,7 +116,7 @@
                                                 <input class="form-control" name="file" type="file" id="foto">
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mb-3">
                                         <div class="col-lg-3">
                                             <label for="titleInput" class="form-label">Slug</label>
@@ -178,20 +178,20 @@
         ;
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/brend/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8000/doctor-position/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Brendi yenilə')
            $.ajax({
                type: "GET",
-               url: 'brend/'+id_,
+               url: 'doctor-position/'+id_,
                 // serializes the form's elements.
                success: function(data)
                {
                          
                    $('#titleInput').val(data.slug)
                    
-                   $('#update_photo').css({'width':'80px','height':'80px'})
-                   $('#update_photo').attr('src','/'+data.image)
+             
+                  
                  
                   
                    if (data.status=='1') {

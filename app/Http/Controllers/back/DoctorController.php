@@ -43,7 +43,7 @@ class DoctorController extends Controller
     {
         $requests=$request->all();
        
-        $requests=$request->all();
+      
      
         $photo = new FIle_download();
         $checkedPhoto =  $photo->download($request)??false;

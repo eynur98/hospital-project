@@ -16,7 +16,7 @@ class AboutController extends Controller
     }
 
     public function update (AboutRequest $request){
-         $about = About::first();
+         $about = About::first() ??[];
      
         $requests=$request->all();
       

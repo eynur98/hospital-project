@@ -42,11 +42,11 @@ class ServiceRequest extends FormRequest
             }
     
             $return[] = [
-               
+                'image'=>['max:2024'],
                 'slug' => ['max:255'],
                 'status'=>['max:2'],
                 'order'=>['max:11'],
-                'image'=>['max:2024']
+              
 
             ];
   

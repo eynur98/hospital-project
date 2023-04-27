@@ -27,7 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Başlıq</th>
+                                    {{-- <th scope="col">Başlıq</th> --}}
                                     <th scope="col">Foto</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
@@ -38,7 +38,7 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->translate('az')->title}}</td>
+                                        {{-- <td>{{$partner->translate('az')->title}}</td> --}}
                                         <td> <img src="{{$partner->image}}" width="50" height="50"> </td>
                                         <td>{{$partner->status==1?' Aktiv ':'Passiv'}}</td>
                                         <td>
@@ -83,7 +83,7 @@
                                 <form action="{{route('certificate.store')}}" id="partner_form" method="post"  enctype='multipart/form-data'>
                                    @csrf
                               
-                                   <div class="row mb-3">
+                                   {{-- <div class="row mb-3">
                                     <div class="custom__tab">
                                         <header>
                                          <ul class="nav nav-pills">
@@ -108,7 +108,7 @@
 
 
 
-                                </div>
+                                </div> --}}
                                 
                                     
                                     <div class="row mb-3">
@@ -118,7 +118,7 @@
                                         <div class="col-lg-9 d-flex">
 
                                             <img id="update_photo"/>
-                                                <input class="form-control" name="file" type="file" id="foto">
+                                                <input class="form-control" name="image" type="file" id="foto">
 
                                         </div>
                                     </div>
@@ -179,12 +179,12 @@
         ;
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/certificate/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8000/image-gallery/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Sertifikatı yenilə')
            $.ajax({
                type: "GET",
-               url: 'certificate/'+id_,
+               url: 'image-gallery/'+id_,
                 // serializes the form's elements.
                success: function(data)
                {

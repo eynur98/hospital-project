@@ -38,7 +38,7 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->translate('az')->title}}</td>
+                                        <td>{{$partner->translate('en')->title}}</td>
                                         <td> <img src="{{$partner->image}}" width="50" height="50"> </td>
                                         <td>{{$partner->status==1?' Aktiv ':'Passiv'}}</td>
                                         <td>
@@ -165,22 +165,22 @@
 <script>
 
 
-           $("#partner_form").on('submit', function(e){
-        e.preventDefault();
-        var datastring = $("#partner_form").serialize();
-        console.log(datastring,'dsdsd');
-$.ajax({
-    type: "POST",
-    url:  $("#partner_form").attr('action'),
-    data: datastring,
-    dataType: "json",
-    success: function(data) {
-        location.reload();
-    },
-    error: function() {
-       console.log('fsadfasd');
-    }
-})})
+//            $("#partner_form").on('submit', function(e){
+//         e.preventDefault();
+//         var datastring = $("#partner_form").serialize();
+//         console.log(datastring,'dsdsd');
+// $.ajax({
+//     type: "POST",
+//     url:  $("#partner_form").attr('action'),
+//     data: datastring,
+//     dataType: "json",
+//     success: function(data) {
+//         location.reload();
+//     },
+//     error: function() {
+//        console.log('fsadfasd');
+//     }
+// })})
 </script>
 
 

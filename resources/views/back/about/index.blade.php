@@ -69,7 +69,7 @@
                                         @foreach ($languages as $item)
                                             
                                         
-                                        <div class="tab-pane fade  @if($item->code=='az')
+                                        <div class="tab-pane fade  @if($item->code=='en')
                                            show active
                                         @endif  " id="steparrow-{{$item->id}}-info" role="tabpanel" aria-labelledby="steparrow-{{$item->id}}-info-tab">
                                             <div>
@@ -111,7 +111,7 @@
 
                     <div class="IMG d-flex mt-2">
                         <label for="foto" class="form-label">Foto: &nbsp </label>
-                        <input class="form-control" name="file" type="file" id="foto"
+                        <input class="form-control" name="image" type="file" id="foto"
                             style="width:400px">
                         <img src="{{ $about->image ?? '' }}" alt="" width="100" height="90">
                     </div>

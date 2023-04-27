@@ -38,7 +38,7 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->translate('az')->title}}</td>
+                                        <td>{{$partner->translate('en')->title}}</td>
                                         <td> <img src="{{$partner->image}}" width="50" height="50"> </td>
                                         <td>{{$partner->status==1?' Aktiv ':'Passiv'}}</td>
                                         <td>
@@ -129,9 +129,9 @@
                                         </div>
                                         <div class="col-lg-9">
 
-                                            <select name="project_category_id" class="form-select " aria-label="Default select example" name="type" id="type_form">
+                                            <select name="doctor_position_id" class="form-select " aria-label="Default select example" name="type" id="type_form">
                                                 @foreach ($categories as $item)
-                                                <option value="{{$item->id}}">{{$item->translate('az')->title}}</option>
+                                                <option value="{{$item->id}}">{{$item->translate('en')->title}}</option>
                                                 @endforeach
                                             
 
@@ -201,12 +201,12 @@
         ;
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/project/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8000/doctor/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Layihəni yenilə')
            $.ajax({
                type: "GET",
-               url: 'project/'+id_,
+               url: 'doctor/'+id_,
                 // serializes the form's elements.
                success: function(data)
                {

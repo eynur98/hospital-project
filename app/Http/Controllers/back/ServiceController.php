@@ -30,21 +30,19 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(Request $request)
     {
         $requests=$request->all();
-       
-        if($request->hasFile('image')){
-
-            $imgExtension = $requests['image']->getClientOriginalExtension();
-            $imageName = time() . "-" . uniqid() . '.' . $imgExtension;
-             $requests['image']->move(public_path('uploads'),$imageName);
-    
-             $requests['image']= 'uploads/'.$imageName;
-        };
+      
+        $photo = new FIle_download();
+        $checkedPhoto =  $photo->download($requests['image'])??false;
+        if ($checkedPhoto){
+            $requests['image']=$checkedPhoto;
+        }
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
+      
        Service::create($requests);
         if ($code=200) {
            return response()->json('success',201);

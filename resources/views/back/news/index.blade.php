@@ -38,7 +38,7 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->translate('az')->title}}</td>
+                                        <td>{{$partner->translate('en')->title}}</td>
                                         <td> <img src="{{$partner->image}}" width="50" height="50"> </td>
                                         <td>{{$partner->status==1?' Aktiv ':'Passiv'}}</td>
                                         <td>
@@ -118,7 +118,7 @@
                                         <div class="col-lg-9 d-flex">
 
                                             <img id="update_photo"/>
-                                                <input class="form-control" name="file" type="file" id="foto">
+                                                <input class="form-control" name="image" type="file" id="foto">
 
                                         </div>
                                     </div>
@@ -131,7 +131,7 @@
 
                                             <select name="news_category_id" class="form-select " aria-label="Default select example" name="type" id="type_form">
                                                 @foreach ($categories as $item)
-                                                <option value="{{$item->id}}">{{$item->translate('az')->title}}</option>
+                                                <option value="{{$item->id}}">{{$item->translate('en')->title}}</option>
                                                 @endforeach
                                             
 

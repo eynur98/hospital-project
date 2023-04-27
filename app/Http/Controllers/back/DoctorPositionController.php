@@ -82,12 +82,13 @@ class DoctorPositionController extends Controller
     public function update(DoctorPositonRequest $request, $id)
     {
         $category = DoctorPosition::find($id);
-     
+        $requests=$request->all();
      
 
       if(!isset($requests['status'])){
         $requests['status']='0';
     }
+    
       $category->update($requests);
       return redirect()->back();
     }
