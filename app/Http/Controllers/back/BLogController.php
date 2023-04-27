@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SupportRequest;
-use App\Models\Support;
+use App\Http\Requests\BlogRequest;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Services\FIle_download;
 use App\Models\Language;
 
 
-class SupportController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class SupportController extends Controller
      */
     public function index()
     {
-        return view('back.support.index',['support'=>Support::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
+        return view('back.support.index',['support'=>Blog::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class SupportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogRequest $request)
     {
         $requests=$request->all();
        
@@ -51,7 +51,7 @@ class SupportController extends Controller
             $requests['status']='0';
         }
    
-        Support::create($requests);
+        Blog::create($requests);
         return redirect()->back();
     }
 
@@ -63,7 +63,7 @@ class SupportController extends Controller
      */
     public function show($id)
     {
-        return Support::find($id);
+        return Blog::find($id);
     }
 
     /**
@@ -84,9 +84,9 @@ class SupportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogRequest $request, $id)
     {
-        $support = Support::find($id);
+        $support = Blog::find($id);
      
           $requests=$request->all();
         
@@ -113,7 +113,7 @@ class SupportController extends Controller
      */
     public function destroy($id)
     {
-        Support::where('id',$id)->delete();
+        Blog::where('id',$id)->delete();
         return redirect()->back();
     }
 }

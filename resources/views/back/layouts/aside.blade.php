@@ -61,11 +61,11 @@
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                      {{--   <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('partner.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Partnyorlar</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('about.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Haqqımızda</span>
@@ -80,19 +80,19 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('certificate.index')}}">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Sertifikatlar</span>
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Şəkil Qalereyası</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('support.index')}}">
-                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Texniki dəsdək</span>
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Bloqlar</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                       {{--  <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('banner.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Bannerlər</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('slider.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Slayderlər</span>
@@ -115,38 +115,21 @@
                         </li> 
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProjects">
-                                <i class="mdi mdi-speedometer"></i> <span data-key="t-Projects">Layihələr</span>
+                                <i class="mdi mdi-speedometer"></i> <span data-key="t-Projects">Həkimlər</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarProjects">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{route('project.category.index')}}" class="nav-link" data-key="t-analytics"> Layihə kateqoriyası </a>
+                                        <a href="{{route('brend.index')}}" class="nav-link" data-key="t-analytics"> Həkim vəzifəsi </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{route('project.index')}}" class="nav-link" data-key="t-analytics"> Layihələr </a>
+                                        <a href="{{route('project.index')}}" class="nav-link" data-key="t-analytics"> Həkimlər </a>
                                     </li>
                                 </ul>
                             </div>
                         </li> 
                         
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="#sidebarProducts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProducts">
-                                <i class="mdi mdi-speedometer"></i> <span data-key="t-Products">Məhsullar</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarProducts">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="{{route('category.index')}}" class="nav-link" data-key="t-analytics"> Məhsul kateqoriyası </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('brend.index')}}" class="nav-link" data-key="t-analytics"> Məhsul brendləri </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="{{route('product.index')}}" class="nav-link" data-key="t-analytics"> Məhsullar </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li> 
+                      
                         
 
                         <li class="nav-item">

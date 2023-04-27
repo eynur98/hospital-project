@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProjectRequest;
-use App\Models\Project;
+use App\Http\Requests\DoctorRequest;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Services\FIle_download;
 use App\Models\Language;
-use App\Models\ProjectCategory;
+use App\Models\DoctorCategory;
+use App\Models\DoctorPosition;
 
-class ProjectController extends Controller
+class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return view('back.project.index',['project'=>Project::paginate(10), 'languages'=>Language::where('status', 1)->get(),'categories'=>ProjectCategory::get()]);
+        return view('back.project.index',['project'=>Doctor::paginate(10), 'languages'=>Language::where('status', 1)->get(),'categories'=>DoctorPosition::get()]);
     }
 
     /**
@@ -38,22 +39,21 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectRequest $request)
+    public function store(DoctorRequest $request)
     {
         $requests=$request->all();
        
-        if($request->hasFile('image')){
-
-            $imgExtension = $requests['image']->getClientOriginalExtension();
-            $imageName = time() . "-" . uniqid() . '.' . $imgExtension;
-             $requests['image']->move(public_path('uploads'),$imageName);
-    
-             $requests['image']= 'uploads/'.$imageName;
-        };
+        $requests=$request->all();
+     
+        $photo = new FIle_download();
+        $checkedPhoto =  $photo->download($request)??false;
+        if ($checkedPhoto){
+            $requests['image']=$checkedPhoto;
+        }
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        Project::create($requests);
+        Doctor::create($requests);
         return redirect()->back();
     }
 
@@ -65,7 +65,7 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Project::find($id);
+        return Doctor::find($id);
     }
 
     /**
@@ -86,20 +86,19 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProjectRequest $request, $id)
+    public function update(DoctorRequest $request, $id)
     {
-        $project = Project::find($id);
+        $project = Doctor::find($id);
      
           $requests=$request->all();
         
-          if($request->hasFile('image')){
-
-            $imgExtension = $requests['image']->getClientOriginalExtension();
-            $imageName = time() . "-" . uniqid() . '.' . $imgExtension;
-             $requests['image']->move(public_path('uploads'),$imageName);
-    
-             $requests['image']= 'uploads/'.$imageName;
-        };
+         
+     
+      $photo = new FIle_download();
+      $checkedPhoto =  $photo->download($request)??false;
+      if ($checkedPhoto){
+          $requests['image']=$checkedPhoto;
+      }
       
         if(!isset($requests['status'])){
             $requests['status']='0';
@@ -118,7 +117,7 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        Project::where('id',$id)->delete();
+        Doctor::where('id',$id)->delete();
         return redirect()->back();
     }
 }

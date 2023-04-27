@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CertificateRequest;
-use App\Models\Certificate;
+use App\Http\Requests\ImageGaleryRequest;
+use App\Models\ImageGalery;
 use Illuminate\Http\Request;
 use App\Services\FIle_download;
 use App\Models\Language;
 
 
-class CertificateController extends Controller
+class ImageGaleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        return view('back.certificate.index',['certificate'=>Certificate::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
+        return view('back.certificate.index',['certificate'=>ImageGalery::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class CertificateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CertificateRequest $request)
+    public function store(ImageGaleryRequest $request)
     {
         $requests=$request->all();
        
@@ -50,7 +50,7 @@ class CertificateController extends Controller
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        Certificate::create($requests);
+        ImageGalery::create($requests);
         return redirect()->back();
     }
 
@@ -62,7 +62,7 @@ class CertificateController extends Controller
      */
     public function show($id)
     {
-        return Certificate::find($id);
+        return ImageGalery::find($id);
     }
 
     /**
@@ -83,9 +83,9 @@ class CertificateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CertificateRequest $request, $id)
+    public function update(ImageGaleryRequest $request, $id)
     {
-        $certificate = Certificate::find($id);
+        $certificate = ImageGalery::find($id);
      
         $requests=$request->all();
       
@@ -112,7 +112,7 @@ class CertificateController extends Controller
      */
     public function destroy($id)
     {
-        Certificate::where('id',$id)->delete();
+        ImageGalery::where('id',$id)->delete();
         return redirect()->back();
     }
 }

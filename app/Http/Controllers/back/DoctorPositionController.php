@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BrendRequest;
-use App\Models\Brend;
+use App\Http\Requests\DoctorPositonRequest;
+use App\Models\DoctorPosition;
 use App\Models\Language;
 use App\Models\Slider;
 use App\Services\FIle_download;
 use Illuminate\Http\Request;
 
-class BrendController extends Controller
+class DoctorPositionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class BrendController extends Controller
      */
     public function index()
     {
-        return view('back.brends.index',['brend'=>Brend::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
+        return view('back.brends.index',['brend'=>DoctorPosition::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
     /**
@@ -38,19 +38,15 @@ class BrendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BrendRequest $request)
+    public function store(DoctorPositonRequest $request)
     {
         $requests=$request->all();
        
-        $photo = new FIle_download();
-        $checkedPhoto =  $photo->download($request)??false;
-        if ($checkedPhoto){
-            $requests['image']=$checkedPhoto;
-        }
+        
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        Brend::create($requests);
+        DoctorPosition::create($requests);
         return redirect()->back();
     }
 
@@ -62,7 +58,7 @@ class BrendController extends Controller
      */
     public function show($id)
     {
-        return Brend::find($id);
+        return DoctorPosition::find($id);
     }
 
     /**
@@ -83,17 +79,11 @@ class BrendController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(BrendRequest $request, $id)
+    public function update(DoctorPositonRequest $request, $id)
     {
-        $category = Brend::find($id);
+        $category = DoctorPosition::find($id);
      
-        $requests=$request->all();
      
-      $photo = new FIle_download();
-      $checkedPhoto =  $photo->download($request)??false;
-      if ($checkedPhoto){
-          $requests['image']=$checkedPhoto;
-      }
 
       if(!isset($requests['status'])){
         $requests['status']='0';
@@ -110,7 +100,7 @@ class BrendController extends Controller
      */
     public function destroy($id)
     {
-        Brend::where('id',$id)->delete();
+        DoctorPosition::where('id',$id)->delete();
         return redirect()->back();
     }
 }

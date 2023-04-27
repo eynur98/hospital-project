@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ProjectCategoryRequest;
-use App\Models\ProjectCategory;
+use App\Http\Requests\VideoGaleryRequest;
+use App\Models\VideoGalery;
 use App\Services\FIle_download;
 use App\Models\Language;
 
 
-class ProjectCategoryController extends Controller
+class VideoGaleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class ProjectCategoryController extends Controller
      */
     public function index()
     {
-        return view('back.project-category.index',['project_category'=>ProjectCategory::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
+        return view('back.project-category.index',['project_category'=>VideoGalery::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
     /**
@@ -37,19 +37,19 @@ class ProjectCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProjectCategoryRequest $request)
+    public function store(VideoGaleryRequest $request)
     {
         $requests=$request->all();
        
-        $photo = new FIle_download();
+       /*  $photo = new FIle_download();
         $checkedPhoto =  $photo->download($request)??false;
         if ($checkedPhoto){
             $requests['image']=$checkedPhoto;
-        }
+        } */
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        ProjectCategory::create($requests);
+        VideoGalery::create($requests);
         return redirect()->back();
     }
 
@@ -61,7 +61,7 @@ class ProjectCategoryController extends Controller
      */
     public function show($id)
     {
-        return ProjectCategory::find($id);
+        return VideoGalery::find($id);
     }
 
     /**
@@ -82,17 +82,17 @@ class ProjectCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProjectCategoryRequest $request, $id)
+    public function update(VideoGaleryRequest $request, $id)
     {
-        $project_category = ProjectCategory::find($id);
+        $project_category = VideoGalery::find($id);
      
           $requests=$request->all();
-        
+      /*   
         $photo = new FIle_download();
         $checkedPhoto =  $photo->download($request)??false;
         if ($checkedPhoto){
             $requests['image']=$checkedPhoto;
-        }
+        } */
       
         if(!isset($requests['status'])){
             $requests['status']='0';
@@ -111,7 +111,7 @@ class ProjectCategoryController extends Controller
      */
     public function destroy($id)
     {
-        ProjectCategory::where('id',$id)->delete();
+        VideoGalery::where('id',$id)->delete();
         return redirect()->back();
     }
 }
