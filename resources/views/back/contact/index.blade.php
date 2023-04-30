@@ -56,7 +56,7 @@
                                         <ul class="nav nav-pills custom-nav nav-justified" role="tablist">
                                             @foreach ($languages as $item)
                                             <li class="nav-item" role="presentation">
-                                                <button class="nav-link done  @if($item->code=='az') active @endif" id="steparrow-{{$item->id}}-info-tab" data-bs-toggle="pill" data-bs-target="#steparrow-{{$item->id}}-info" type="button" role="tab" aria-controls="steparrow-{{$item->id}}-info" aria-selected="true">{{$item->name}}</button>
+                                                <button class="nav-link done  @if($item->code=='en') active @endif" id="steparrow-{{$item->id}}-info-tab" data-bs-toggle="pill" data-bs-target="#steparrow-{{$item->id}}-info" type="button" role="tab" aria-controls="steparrow-{{$item->id}}-info" aria-selected="true">{{$item->name}}</button>
                                             </li>
                                             @endforeach
                                          
@@ -69,7 +69,7 @@
                                         @foreach ($languages as $item)
                                             
                                         
-                                        <div class="tab-pane fade  @if($item->code=='az')
+                                        <div class="tab-pane fade  @if($item->code=='en')
                                            show active
                                         @endif  " id="steparrow-{{$item->id}}-info" role="tabpanel" aria-labelledby="steparrow-{{$item->id}}-info-tab">
                                             <div>

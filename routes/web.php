@@ -37,24 +37,9 @@ Route::get('/news1/{slug}', [HomeController:: class, 'news'])->name('news');
 Route::get('/news-detail/{slug}', [HomeController:: class, 'newsDetail'])->name('news.detail');
 Route::get('/about1', [HomeController:: class, 'about'])->name('about');
 Route::get('/elaqe', [HomeController:: class, 'elaqe'])->name('elaqe');
-Route::get('/products/{slug}', [HomeController:: class, 'productCategory'])->name('product');
-Route::get('/product-detail/{slug}', [HomeController:: class, 'productDetail'])->name('product.detail');
-Route::get('/filter', [HomeController:: class, 'filter'])->name('filter');
-Route::get('/login',[FrontAuthController::class,'login'])->name('front.login');
-Route::post('/login-post',[FrontAuthController::class,'login_post'])->name('login.post');
-Route::get('/register',[FrontAuthController::class,'register'])->name('front.register');
-Route::post('register-post',[FrontAuthController::class,'register_post'])->name('register.post');
-Route::get('/logout', [FrontAuthController:: class, 'logout'])->name('front.logout');
-Route::get('project-category/{slug}', [HomeController:: class, 'project_category'])->name('project.category');
-Route::get('/project/{slug}', [HomeController:: class, 'project_detail'])->name('projects.detail');
-//Route::get('/certificates', [HomeController:: class, 'certificates'])->name('certificates');
-Route::get('/supports', [HomeController:: class, 'support'])->name('support');
-Route::get('/services', [HomeController:: class, 'services'])->name('services');
-Route::get('/cart', [CartController::class,'cart'])->name('cart');
-Route::get('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add.to.cart');
-Route::put('update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::get('remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-Route::get('/checkout', [CheckoutController::class,'checkout'])->name('checkout');
+Route::get('/service1/{slug}', [HomeController:: class, 'service_detail'])->name('service.detail');
+
+
 //});
 
 

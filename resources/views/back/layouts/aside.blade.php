@@ -133,7 +133,7 @@
                         
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{-- {{route('contact.index')}} --}}">
+                            <a class="nav-link menu-link" href="{{route('contact.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Əlaqə</span>
                             </a>
                         </li>

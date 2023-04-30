@@ -84,14 +84,11 @@ class ServiceController extends Controller
      
           $requests=$request->all();
         
-          if($request->hasFile('image')){
-
-            $imgExtension = $requests['image']->getClientOriginalExtension();
-            $imageName = time() . "-" . uniqid() . '.' . $imgExtension;
-             $requests['image']->move(public_path('uploads'),$imageName);
-    
-             $requests['image']= 'uploads/'.$imageName;
-        };
+          $photo = new FIle_download();
+          $checkedPhoto =  $photo->download($request)??false;
+          if ($checkedPhoto){
+              $requests['image']=$checkedPhoto;
+          }
       
         if(!isset($requests['status'])){
             $requests['status']='0';
@@ -100,7 +97,7 @@ class ServiceController extends Controller
      
         $service->update($requests);
         if ($code=200) {
-            return response()->json('success',201);
+            return redirect()->back();
          }else{
              $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
  
