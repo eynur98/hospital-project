@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from st.ourhtmldemo.com/new/Hospitals/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Apr 2023 17:36:57 GMT -->
+
 <head>
 	<meta charset="UTF-8">
 	<title>Home || Hospitals || Responsive HTML 5 Template</title>
@@ -66,7 +66,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="{{ route('home') }}">
                         <img src="{{asset('template') }}/images/resources/logo.png" alt="Awesome Logo">
                     </a>
                 </div>
@@ -149,14 +149,17 @@
                     </div>
                     <div class="navbar-collapse collapse clearfix">
                         <ul class="navigation clearfix">
-                            <li class="current"><a href="index.html">Home</a></li>
+                            <li class="current"><a href="{{ route('home') }}">Home</a></li>
                             <li ><a href="{{ route('about') }}">About Us</a>
                              
                             </li>
-                            <li class="dropdown"><a href="blog-default.html">Doctors</a>
+                            <li class="dropdown"><a href="#">Doctors</a>
                                 <ul>
-                                    <li><a href="blog-large.html">Image gallery</a></li>
-                                    <li><a href="blog-single.html">Video Gallery</a></li>
+                                    @foreach ($doctor_positons as $item)
+                                    <li><a href="blog-large.html">{{ $item->translate(App::getLocale())->title }}</a></li>
+                                    @endforeach
+                                   
+                                  
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#">Xidmətlər</a>
