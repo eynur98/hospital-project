@@ -13,8 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('price_translations', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->enum('status',['1','0'])->default('1');
+            $table->enum('at_home',['1','0'])->default('0');
+            $table->string('image')->nullable();
+            $table->unsignedInteger('order')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('price_translations');
+        Schema::dropIfExists('certificates');
     }
 };
