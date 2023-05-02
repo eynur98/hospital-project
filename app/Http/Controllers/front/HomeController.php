@@ -19,6 +19,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Statistic;
 use App\Models\Support;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
@@ -44,16 +45,16 @@ class HomeController extends Controller
 
     }
     public function index(){
-         $sliders = Slider::where('status',1)->get();
-       
-         $blogs = Blog::where('status', 1)->orderBy('created_at', 'ASC')->limit(3)->get();
-        // $services = Service::where('slug', 'LIKE', '%plastic-surgery%')->get();
-          $doctors = Doctor::where('status',1)->get();
-         $statics = Statistic::where('status', 1)->get();
-          $comments = Comment::where('status',1)->get();
-          
-        return view('front.home.index',compact('sliders','blogs','doctors', 'statics','comments'));
-    }
+        $sliders = Slider::where('status',1)->get();
+      
+        $blogs = Blog::where('status', 1)->orderBy('created_at', 'ASC')->limit(3)->get();
+       // $services = Service::where('slug', 'LIKE', '%plastic-surgery%')->get();
+         $doctors = Doctor::where('status',1)->get();
+        $statics = Statistic::where('status', 1)->get();
+         $comments = Comment::where('status',1)->get();
+         
+       return view('front.home.index',compact('sliders','blogs','doctors', 'statics','comments'));
+   }
 
     public function news($slug){
         $news_cat=NewsCategory::where('slug',$slug)->first() ?? abort(404);
@@ -61,11 +62,24 @@ class HomeController extends Controller
         return view('front.news.index',compact('news'));
     }
 
+
     public function newsDetail($slug){
         $news = News::whereSlug($slug)->first();
         $news_category=NewsCategory::where('id',$news->news_category_id)->first() ?? [];
         $similar_products = News::where('news_category_id', $news_category->id)->get() ?? [];
+    
+      if (!Cookie::get('news_' . $news->id)) {
+       
+        $news->increment('view_count');
+     
+    }
         return view('front.news.news',compact('news','news_category','similar_products'));
+    }
+
+    public function doctor($slug){
+        $news_cat=DoctorPosition::where('slug',$slug)->first() ?? abort(404);
+        $news = Doctor::where('doctor_position_id',$news_cat->id)->where('status',1)->paginate(18);
+        return view('front.news.index',compact('news'));
     }
 
     public function blog(){
@@ -76,7 +90,11 @@ class HomeController extends Controller
 
     public function blog_detail($slug){
         $news = Blog::whereSlug($slug)->first() ?? abort(404);
+        if (!Cookie::get('news_' . $news->id)) {
        
+            $news->increment('view_count');
+         
+        }
         return view('front.blog.blog',compact('news'));
     }
 
@@ -103,14 +121,7 @@ class HomeController extends Controller
     }
 
    
-    public function doctor($slug){
-        $news = DoctorPosition::whereSlug($slug)->first();
-    
-        $doctors = Doctor::where('doctor_position_id',$news->id)->where('status',1)->paginate(18);
-      /*   dd($doctors); */
-        return view('front.doctor.index',compact('doctors'));
-    }
-
+   
 
     // public function contact_message(ContactMessageRequest $request){
       

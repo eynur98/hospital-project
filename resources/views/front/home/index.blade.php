@@ -207,34 +207,13 @@
                             </div>
                             <!--End single tab pane-->
                             <!--Start single tab pane-->
-                            <div class="tab-pane active" id="laboratory">
-                                <div class="inner-content">
-                                    <div class="sec-title">
-                                        <h1>Our Best Services</h1>
-                                        <span class="border"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="text-box">
-                                                <h3>Laboratory Analysis</h3>
-                                                <p>Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and the master-builder of human happiness. Expound the actual teachings of the great explorer of the truth.</p>
-                                                <a class="thm-btn" href="">Read More</a>
-                                            </div>    
-                                        </div>    
-                                        <div class="col-md-6">
-                                            <div class="img-box">
-                                                <img src="{{asset('template') }}/images/services/service-big-2.jpg" alt="Awesome Image">
-                                            </div>    
-                                        </div>    
-                                    </div>
-                                </div>  
-                            </div>
+                           
                             <!--End single tab pane-->
-                            @foreach ($services as $item)
+                            @foreach ($services as $key=>$item)
                                 
                          
                             <!--Start single tab pane-->
-                            <div class="tab-pane" id="{{$item->slug}}">
+                            <div class="tab-pane @if ($key==0) active @endif" id="{{$item->slug}}">
                                 <div class="inner-content">
                                     <div class="sec-title">
                                         <h1>Our Best Services</h1>
@@ -261,11 +240,36 @@
                           
                         </div>
                         <ul class="nav nav-tabs tab-menu">
-                            @foreach ($services as $item)
-                            <li>
+                            @foreach ($services as $key=>$item)
+                            <li style="width: 22%"@if ($key==0) class="active" @endif>
+                                <a href="#{{ $item->slug }}" data-toggle="tab">
+                                    <div  class="img-holder">
+                                        <img  src="{{asset($item->image) }}" alt="Awesome Image">
+                                        <div class="overlay-style-one">
+                                            <div class="box">
+                                                <div class="content">
+                                                    <div class="iocn-holder">
+                                                        <span class="flaticon-plus-symbol"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <h3>{{$item->translate(App::getLocale())->title}}</h3>
+                            </li>
+                            @endforeach
+                           
+                        
+                          
+                           
+                        </ul> 
+                        {{-- <ul class="nav nav-tabs tab-menu">
+                            @foreach ($services as $key=>$item)
+                            <li @if ($key==0) class="active" @endif>
                                 <a href="#{{$item->slug}}" data-toggle="tab">
                                     <div class="img-holder">
-                                        <img src="{{asset($item->image) }}" alt="Awesome Image">
+                                        <img style="width: 22%" src="{{asset($item->image) }}" alt="Awesome Image">
                                         <div class="overlay-style-one">
                                             <div class="box">
                                                 <div class="content">
@@ -281,7 +285,7 @@
                             </li>
                             @endforeach
                          
-                        </ul> 
+                        </ul>  --}}
                     </div>
                     <!--End tab box--> 
                 </div>

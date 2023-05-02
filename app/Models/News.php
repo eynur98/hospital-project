@@ -12,7 +12,7 @@ class News extends Model implements TranslatableContract
 {
     use HasFactory, Translatable;
     public $translatedAttributes = ['title', 'description' ];
-    protected $fillable = ['news_category_id','slug','order','image','status','at_home'];
+    protected $fillable = ['news_category_id','slug','order','image','status','at_home','view_count'];
 
     public function news_category(){
         return $this->belongsTo(NewsCategory::class);

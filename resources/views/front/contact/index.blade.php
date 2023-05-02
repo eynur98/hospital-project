@@ -96,7 +96,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Address:</span> 121, Park Drive, Varick Str<br>New York, NY 10012, USA</h5>
+                                <h5><span>Address:</span> {!! $contact->translate(App::getLocale())->address !!}</h5>
                             </div>
                         </li>
                         <li>
@@ -104,7 +104,7 @@
                                 <span class="flaticon-technology"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Phone:</span> (123) 0200 12345 &<br>1800-45-678-9012</h5>
+                                <h5><span>Phone:</span>{{ $contact->phone }}</h5>
                             </div>
                         </li>
                         <li>
@@ -112,16 +112,15 @@
                                 <span class="flaticon-interface"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Email:</span> Mailus@hospitalteam.com</h5>
+                                <h5><span>Email:</span> {{ $contact->email }}</h5>
                             </div>
                         </li>
                     </ul>
                     <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="{{ $contact->facebbok }}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>    
             </div>
@@ -134,20 +133,7 @@
 <!--Start contact map area-->
 <section class="contact-map-area">
     <div class="container-fluid">
-        <div class="google-map-inner">
-            <div 
-                class="google-map" 
-                id="contact-google-map" 
-                data-map-lat="44.529688" 
-                data-map-lng="-72.933009" 
-                data-icon-path="{{ asset('template') }}/images/resources/map-marker.png" 
-                data-map-title="Brooklyn, New York, United Kingdom" 
-                data-map-zoom="12" 
-                data-markers='{
-                    "marker-1": [44.529688, -72.933009, "<h4>Head Office</h4><p>44/77 Alabama, a western U.S.A</p>"]
-                }'>
-            </div>
-        </div>  
+     {!! $contact->map !!}
     </div>
 </section>
 <!--End contact map area-->

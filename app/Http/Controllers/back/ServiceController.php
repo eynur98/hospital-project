@@ -33,9 +33,9 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $requests=$request->all();
-      
+       
         $photo = new FIle_download();
-        $checkedPhoto =  $photo->download($requests['image'])??false;
+        $checkedPhoto =  $photo->download($request)??false;
         if ($checkedPhoto){
             $requests['image']=$checkedPhoto;
         }
@@ -45,7 +45,7 @@ class ServiceController extends Controller
       
        Service::create($requests);
         if ($code=200) {
-           return response()->json('success',201);
+           return redirect()->back();
         }else{
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
 
