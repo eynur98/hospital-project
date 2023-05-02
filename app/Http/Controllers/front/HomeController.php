@@ -7,6 +7,7 @@ use App\Http\Requests\ContactMessageRequest;
 use App\Models\About;
 use App\Models\Blog;
 use App\Models\Certificate;
+use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\ContactMessage;
 use App\Models\Doctor;
@@ -16,6 +17,7 @@ use App\Models\NewsCategory;
 
 use App\Models\Service;
 use App\Models\Slider;
+use App\Models\Statistic;
 use App\Models\Support;
 use Illuminate\Support\Facades\View;
 
@@ -42,12 +44,15 @@ class HomeController extends Controller
 
     }
     public function index(){
-        // $sliders = Slider::where('status',1)->get();
-        // $banners = Banner::where('status',1)->limit(2)->get();
-        // $news = News::where('status', 1)->orderBy('created_at', 'ASC')->limit(6)->get();
-        // $partners = Partner::where('type',1)->get();
-        // $cats = Category::where('home', 1)->where('status',1)->with('category_prods')->get();
-        return view('front.home.index');//compact('sliders','banners','news','partners', 'cats'));
+         $sliders = Slider::where('status',1)->get();
+       
+         $blogs = Blog::where('status', 1)->orderBy('created_at', 'ASC')->limit(3)->get();
+        // $services = Service::where('slug', 'LIKE', '%plastic-surgery%')->get();
+          $doctors = Doctor::where('status',1)->get();
+         $statics = Statistic::where('status', 1)->get();
+          $comments = Comment::where('status',1)->get();
+          
+        return view('front.home.index',compact('sliders','blogs','doctors', 'statics','comments'));
     }
 
     public function news($slug){
@@ -98,7 +103,14 @@ class HomeController extends Controller
     }
 
    
-   
+    public function doctor($slug){
+        $news = DoctorPosition::whereSlug($slug)->first();
+    
+        $doctors = Doctor::where('doctor_position_id',$news->id)->where('status',1)->paginate(18);
+      /*   dd($doctors); */
+        return view('front.doctor.index',compact('doctors'));
+    }
+
 
     // public function contact_message(ContactMessageRequest $request){
       

@@ -4,8 +4,12 @@
 <section class="rev_slider_wrapper">
     <div id="slider1" class="rev_slider"  data-version="5.0">
         <ul>
+            
+            @foreach ($sliders as $item)
+                
+           
             <li data-transition="rs-20">
-                <img src="{{asset('template') }}/images/slides/1.jpg"  alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1">
+                <img src="{{asset($item->image) }}"  alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1">
                 
                 <div class="tp-caption  tp-resizeme" 
                     data-x="left" data-hoffset="0" 
@@ -19,66 +23,18 @@
                     data-responsive_offset="on"
                     data-start="1500">
                     <div class="slide-content-box mar-lft">
-                        <h1>Hospitals providing total<br> healthcare <span>Solutions.</span></h1>
-                        <p>Denouncing pleasure and praising pain was born and we will <br>give you a complete account of the system.</p>
+                        <h1>{{$item->title}}</h1>
+                        <p>{{$item->description}}</p>
                         <div class="button">
-                            <a class="#" href="#">Read More</a>
-                            <a class="btn-style-two" href="#">Departments</a>           
+                            <a class="#" href="{{$item->link}}">{{$item->link_title}}</a>
+                           {{--  <a class="btn-style-two" href="{{}}">Departments</a>   --}}         
                         </div>  
                     </div>
                 </div>
                
             </li>
-            <li data-transition="fade">
-                <img src="{{asset('template') }}/images/slides/2.jpg" alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1" >
-
-                <div class="tp-caption  tp-resizeme" 
-                    data-x="right" data-hoffset="0" 
-                    data-y="top" data-voffset="220" 
-                    data-transform_idle="o:1;"         
-                    data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;" 
-                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" 
-                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" 
-                    data-splitin="none" 
-                    data-splitout="none"
-                    data-responsive_offset="on"
-                    data-start="1500">
-                    <div class="slide-content-box">
-                        <h1>Hospitals providing total<br> healthcare <span>Solutions.</span></h1>
-                        <p>Denouncing pleasure and praising pain was born and we will <br>give you a complete account of the system.</p>
-                        <div class="button">
-                            <a class="#" href="#">Read More</a>
-                            <a class="btn-style-two" href="#">Departments</a>           
-                        </div>  
-                    </div>
-                </div>
-                
-            </li>
-            <li data-transition="fade">
-                <img src="{{asset('template') }}/images/slides/3.jpg"  alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1">
-                
-                <div class="tp-caption  tp-resizeme" 
-                    data-x="left" data-hoffset="0" 
-                    data-y="top" data-voffset="220" 
-                    data-transform_idle="o:1;"         
-                    data-transform_in="x:[-175%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;" 
-                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;" 
-                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;" 
-                    data-splitin="none" 
-                    data-splitout="none"
-                    data-responsive_offset="on"
-                    data-start="1500">
-                    <div class="slide-content-box mar-lft">
-                        <h1>Hospitals providing total<br> healthcare <span>Solutions.</span></h1>
-                        <p>Denouncing pleasure and praising pain was born and we will <br>give you a complete account of the system.</p>
-                        <div class="button">
-                            <a class="#" href="#">Read More</a>
-                            <a class="btn-style-two" href="#">Departments</a>           
-                        </div>  
-                    </div>
-                </div>
-
-            </li>
+            @endforeach
+           
         </ul>
     </div>
 </section>
@@ -262,7 +218,7 @@
                                             <div class="text-box">
                                                 <h3>Laboratory Analysis</h3>
                                                 <p>Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and the master-builder of human happiness. Expound the actual teachings of the great explorer of the truth.</p>
-                                                <a class="thm-btn" href="#">Read More</a>
+                                                <a class="thm-btn" href="">Read More</a>
                                             </div>    
                                         </div>    
                                         <div class="col-md-6">
@@ -274,8 +230,11 @@
                                 </div>  
                             </div>
                             <!--End single tab pane-->
+                            @foreach ($services as $item)
+                                
+                         
                             <!--Start single tab pane-->
-                            <div class="tab-pane" id="cardiac">
+                            <div class="tab-pane" id="{{$item->slug}}">
                                 <div class="inner-content">
                                     <div class="sec-title">
                                         <h1>Our Best Services</h1>
@@ -284,50 +243,29 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="text-box">
-                                                <h3>Cardiac Clinic Analysis</h3>
-                                                <p>Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and the master-builder of human happiness. Expound the actual teachings of the great explorer of the truth.</p>
-                                                <a class="thm-btn" href="#">Read More</a>
+                                                <h3>{{$item->translate(App::getLocale())->title}}</h3>
+                                                <p>{!!Str::limit($item->translate(App::getLocale())->description,150)!!}</p>
+                                                <a class="thm-btn" href="{{route('service.detail',$item->slug)}}">Read More</a>
                                             </div>    
                                         </div>    
                                         <div class="col-md-6">
                                             <div class="img-box">
-                                                <img src="{{asset('template') }}/images/services/service-big-3.jpg" alt="Awesome Image">
+                                                <img src="{{asset($item->image) }}" alt="Awesome Image">
                                             </div>    
                                         </div>    
                                     </div>
                                 </div>     
                             </div>
                             <!--End single tab pane-->
-                            <!--Start single tab pane-->
-                            <div class="tab-pane" id="outpatient">
-                                <div class="inner-content">
-                                    <div class="sec-title">
-                                        <h1>Our Best Services</h1>
-                                        <span class="border"></span>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="text-box">
-                                                <h3>OutPatient Analysis</h3>
-                                                <p>Explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and the master-builder of human happiness. Expound the actual teachings of the great explorer of the truth.</p>
-                                                <a class="thm-btn" href="#">Read More</a>
-                                            </div>    
-                                        </div>    
-                                        <div class="col-md-6">
-                                            <div class="img-box">
-                                                <img src="{{asset('template') }}/images/services/service-big-4.jpg" alt="Awesome Image">
-                                            </div>    
-                                        </div>    
-                                    </div>
-                                </div>     
-                            </div>
-                            <!--End single tab pane-->
+                            @endforeach
+                          
                         </div>
                         <ul class="nav nav-tabs tab-menu">
+                            @foreach ($services as $item)
                             <li>
-                                <a href="#opthalmology" data-toggle="tab">
+                                <a href="#{{$item->slug}}" data-toggle="tab">
                                     <div class="img-holder">
-                                        <img src="{{asset('template') }}/images/services/service-small-1.jpg" alt="Awesome Image">
+                                        <img src="{{asset($item->image) }}" alt="Awesome Image">
                                         <div class="overlay-style-one">
                                             <div class="box">
                                                 <div class="content">
@@ -339,59 +277,10 @@
                                         </div>
                                     </div>
                                 </a>
-                                <h3>Opthalmology</h3>
+                                <h3>{{$item->translate(App::getLocale())->title}}</h3>
                             </li>
-                            {{-- <li class="active">
-                                <a href="#laboratory" data-toggle="tab">
-                                    <div class="img-holder">
-                                        <img src="{{asset('template') }}/images/services/service-small-2.jpg" alt="Awesome Image">
-                                        <div class="overlay-style-one">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="iocn-holder">
-                                                        <span class="flaticon-plus-symbol"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>    
-                                </a>
-                                <h3>Laboratory</h3>
-                            </li> --}}
-                            <li>
-                                <a href="#cardiac" data-toggle="tab">
-                                    <div class="img-holder">
-                                        <img src="{{asset('template') }}/images/services/service-small-3.jpg" alt="Awesome Image">
-                                        <div class="overlay-style-one">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="iocn-holder">
-                                                        <span class="flaticon-plus-symbol"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h3>Cardiac Clinic</h3>
-                            </li>
-                            <li>
-                                <a href="#outpatient" data-toggle="tab">
-                                    <div class="img-holder">
-                                        <img src="{{asset('template') }}/images/services/service-small-4.jpg" alt="Awesome Image">
-                                        <div class="overlay-style-one">
-                                            <div class="box">
-                                                <div class="content">
-                                                    <div class="iocn-holder">
-                                                        <span class="flaticon-plus-symbol"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <h3>OutPatient</h3>
-                            </li>
+                            @endforeach
+                         
                         </ul> 
                     </div>
                     <!--End tab box--> 
@@ -410,6 +299,10 @@
             <span class="border"></span>
         </div>
         <div class="row">
+
+            @foreach ($doctors as $item)
+                
+           
             <!--Start single item-->
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-team-member">
@@ -439,97 +332,10 @@
                     </div>
                 </div>
             </div>
+            @endforeach
             <!--End single item-->
-            <!--Start single item-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="{{asset('template') }}/images/team/2.jpg" alt="Awesome Image">
-                        <div class="overlay-style">
-                            <div class="box">
-                                <div class="content">
-                                    <div class="top">
-                                        <h3>Alen Bailey</h3>
-                                        <span>Newyork</span>
-                                    </div>
-                                    <span class="border"></span>
-                                    <div class="bottom">
-                                        <ul>
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
-                                        </ul>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <h3>Marc Parcival</h3> 
-                            <span>Newyork</span>   
-                        </div>    
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="{{asset('template') }}/images/team/3.jpg" alt="Awesome Image">
-                        <div class="overlay-style">
-                            <div class="box">
-                                <div class="content">
-                                    <div class="top">
-                                        <h3>Basil Andrew</h3>
-                                        <span>Newyork</span>
-                                    </div>
-                                    <span class="border"></span>
-                                    <div class="bottom">
-                                        <ul>
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
-                                        </ul>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <h3>Marc Parcival</h3> 
-                            <span>Newyork</span>   
-                        </div>    
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
-            <!--Start single item-->
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                <div class="single-team-member">
-                    <div class="img-holder">
-                        <img src="{{asset('template') }}/images/team/4.jpg" alt="Awesome Image">
-                        <div class="overlay-style">
-                            <div class="box">
-                                <div class="content">
-                                    <div class="top">
-                                        <h3>Edgar Denzil</h3>
-                                        <span>Newyork</span>
-                                    </div>
-                                    <span class="border"></span>
-                                    <div class="bottom">
-                                        <ul>
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
-                                        </ul>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <h3>Edgar Denzil</h3> 
-                            <span>Newyork</span>   
-                        </div>    
-                    </div>
-                </div>
-            </div>
-            <!--End single item-->
+           
+          
         </div>
     </div>
 </section> 
@@ -546,34 +352,19 @@
             <!--Start single item-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <ul>
+                    @foreach ($statics as $item)
                     <li>
                         <div class="single-item text-center">
                             <div class="icon-holder">
                                 <span class="flaticon-medical"></span> 
                             </div>
-                            <h1><span class="timer" data-from="1" data-to="25" data-speed="5000" data-refresh-interval="50">25</span></h1>
-                            <h3>Years of Experience</h3>
+                            <h1><span class="timer" data-from="1" data-to="{{$item->statistica}}" data-speed="5000" data-refresh-interval="50">{{$item->statistica}}</span></h1>
+                            <h3>{{$item->translate(App::getLocale())->title}}</h3>
                         </div>
                     </li>
-                    <li>
-                        <div class="single-item text-center">
-                            <div class="icon-holder">
-                                <span class="flaticon-smile"></span> 
-                            </div>
-                            <h1><span class="timer" data-from="1" data-to="284" data-speed="5000" data-refresh-interval="50">284</span></h1>
-                            <h3>Well Smiley Faces</h3>
-                        </div>
-                    </li>
+                    @endforeach
                    
-                    <li>
-                        <div class="single-item text-center">
-                            <div class="icon-holder">
-                                <span class="flaticon-ribbon"></span> 
-                            </div>
-                            <h1><span class="timer" data-from="1" data-to="142" data-speed="5000" data-refresh-interval="50">142</span></h1>
-                            <h3>Awards Holded</h3>
-                        </div>
-                    </li>
+                 
                 </ul>
             </div>
             <!--End single item-->

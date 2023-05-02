@@ -156,7 +156,7 @@
                             <li class="dropdown"><a href="#">Doctors</a>
                                 <ul>
                                     @foreach ($doctor_positons as $item)
-                                    <li><a href="blog-large.html">{{ $item->translate(App::getLocale())->title }}</a></li>
+                                    <li><a href="{{route('doctors',$item->slug)}}">{{ $item->translate(App::getLocale())->title }}</a></li>
                                     @endforeach
                                    
                                   
