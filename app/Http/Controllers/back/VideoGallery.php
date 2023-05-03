@@ -3,22 +3,22 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CertificateRequest;
-use App\Models\Certificate;
-use App\Models\Language;
+use App\Http\Requests\VideoGaleryRequest;
+use App\Models\VideoGalery;
 use App\Services\FIle_download;
 use Illuminate\Http\Request;
 
-class CertificateController extends Controller
+class VideoGallery extends Controller
 {
-    /**
+  
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('back.certificates.index',['certificate'=>Certificate::paginate(10)]);
+        return view('back.video-gallery.index',['certificate'=>VideoGalery::paginate(10)]);
     }
 
     /**
@@ -37,20 +37,19 @@ class CertificateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CertificateRequest $request)
+    public function store(VideoGaleryRequest $request)
     {
         $requests=$request->all();
        
         $photo = new FIle_download();
         $checkedPhoto =  $photo->download($request)??false;
-       
         if ($checkedPhoto){
             $requests['image']=$checkedPhoto;
         }
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        Certificate::create($requests);
+        VideoGalery::create($requests);
         return redirect()->back();
     }
 
@@ -62,7 +61,7 @@ class CertificateController extends Controller
      */
     public function show($id)
     {
-        return Certificate::find($id);
+        return VideoGalery::find($id);
     }
 
     /**
@@ -83,9 +82,9 @@ class CertificateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CertificateRequest $request, $id)
+    public function update(VideoGaleryRequest $request, $id)
     {
-        $certificate = Certificate::find($id);
+        $certificate = VideoGalery::find($id);
      
         $requests=$request->all();
       
@@ -112,7 +111,7 @@ class CertificateController extends Controller
      */
     public function destroy($id)
     {
-        Certificate::where('id',$id)->delete();
+        VideoGalery::where('id',$id)->delete();
         return redirect()->back();
     }
 }

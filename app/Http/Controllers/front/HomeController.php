@@ -77,10 +77,13 @@ class HomeController extends Controller
     }
 
     public function doctor($slug){
-        $news_cat=DoctorPosition::where('slug',$slug)->first() ?? abort(404);
-        $news = Doctor::where('doctor_position_id',$news_cat->id)->where('status',1)->paginate(18);
-        return view('front.news.index',compact('news'));
+        $doctor_position = DoctorPosition::whereSlug($slug)->first();
+    
+     /*    $doctors = Doctor::where('doctor_position_id',$doctor_position->id)->where('status',1)->paginate(18); */
+      /*   dd($doctors); */
+        return view('front.doctor.index',compact('doctor_position'));
     }
+
 
     public function blog(){
        
@@ -120,7 +123,16 @@ class HomeController extends Controller
         return view('front.services.index',compact('service'));
     }
 
-   
+    public function image_gallery(){
+       
+        $news = Blog::where('status',1)->paginate(18);
+        return view('front.blog.index',compact('news'));
+    }
+    public function video_gallery(){
+       
+        $news = Blog::where('status',1)->paginate(18);
+        return view('front.blog.index',compact('news'));
+    }
    
 
     // public function contact_message(ContactMessageRequest $request){

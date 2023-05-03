@@ -39,6 +39,8 @@ Route::get('/doctor1/{slug}', [HomeController:: class, 'doctor'])->name('doctors
 Route::get('/news-detail/{slug}', [HomeController:: class, 'newsDetail'])->name('news.detail');
 Route::get('/about1', [HomeController:: class, 'about'])->name('about');
 Route::get('/elaqe', [HomeController:: class, 'elaqe'])->name('elaqe');
+Route::get('/video-gallery1', [HomeController:: class, 'video_gallery'])->name('video.gallery');
+Route::get('/image-gallery1', [HomeController:: class, 'image_gallery'])->name('image.gallery');
 Route::get('/service1/{slug}', [HomeController:: class, 'service_detail'])->name('service.detail');
 
 
@@ -62,6 +64,10 @@ Route::post('/admin-post', [AuthController:: class, 'login_post'])->name('log_in
     Route::resource('news', 'App\Http\Controllers\back\NewsController')->names('news');
     Route::resource('service', 'App\Http\Controllers\back\ServiceController')->names('service');
     Route::resource('image-gallery', 'App\Http\Controllers\back\ImageGaleryController')->names('certificate');
+    Route::resource('video-gallery', 'App\Http\Controllers\back\VideoGallery')->names('vgallery');
+    Route::resource('cerificate', 'App\Http\Controllers\back\CertificateController')->names('certificates');
+    Route::resource('statistica', 'App\Http\Controllers\back\StatisticaController')->names('statistica');
+
    // Route::resource('doctor-position', 'App\Http\Controllers\back\DoctorPositionController')->names('project.category');
     Route::resource('doctor', 'App\Http\Controllers\back\DoctorController')->names('project');
     Route::resource('blog', 'App\Http\Controllers\back\BlogController')->names('support');

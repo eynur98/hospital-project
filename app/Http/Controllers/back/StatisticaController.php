@@ -18,7 +18,7 @@ class StatisticaController extends Controller
      */
     public function index()
     {
-        return view('back.certificate.index',['certificate'=>Statistic::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
+        return view('back.statistica.index',['certificate'=>Statistic::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
     /**
