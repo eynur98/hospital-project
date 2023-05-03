@@ -137,17 +137,18 @@
                             <span class="border"></span>
                         </div>
                      
-                        <form id="add-comment-form" name="comment-form" action="#" method="post">
+                        <form  name="comment-form"action="{{ route('comment') }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="field-label">First Name*</div>
-                                            <input type="text" name="fname" placeholder="" required="">
+                                            <input type="text" name="name" placeholder="" required="">
                                         </div>
                                         <div class="col-md-6">
                                             <div class="field-label">Last Name*</div>
-                                            <input type="text" name="lname" placeholder="" required="">
+                                            <input type="text" name="surname" placeholder="" required="">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -159,7 +160,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="field-label">Your Comments</div>
-                                            <textarea name="comment"></textarea>
+                                            <textarea name="text"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">

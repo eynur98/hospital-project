@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class VideoGalery extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['video','status','at_home','order'];
 }

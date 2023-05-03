@@ -41,11 +41,7 @@ class VideoGallery extends Controller
     {
         $requests=$request->all();
        
-        $photo = new FIle_download();
-        $checkedPhoto =  $photo->download($request)??false;
-        if ($checkedPhoto){
-            $requests['image']=$checkedPhoto;
-        }
+      
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
@@ -88,11 +84,7 @@ class VideoGallery extends Controller
      
         $requests=$request->all();
       
-      $photo = new FIle_download();
-      $checkedPhoto =  $photo->download($request)??false;
-      if ($checkedPhoto){
-          $requests['image']=$checkedPhoto;
-      }
+   
     
       if(!isset($requests['status'])){
           $requests['status']='0';

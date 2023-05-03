@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\front;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\ContactMessageRequest;
 use App\Models\About;
 use App\Models\Blog;
@@ -135,10 +136,10 @@ class HomeController extends Controller
     }
    
 
-    // public function contact_message(ContactMessageRequest $request){
+     public function comment(CommentRequest $request){
       
-    //     $requests=$request->all();
-    //     ContactMessage::create($requests);
-    //     return redirect()->back();
-    // }
+        $requests=$request->all();
+         Comment::create($requests);
+         return redirect()->back()->with('success','Comment posted');
+     }
 }

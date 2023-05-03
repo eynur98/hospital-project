@@ -35,12 +35,15 @@ Route::get('pagination', [PaginationController::class, 'index']);
 Route::get('/', [HomeController:: class, 'index'])->name('home');
 Route::get('/news1/{slug}', [HomeController:: class, 'news'])->name('news');
 Route::get('/doctor1/{slug}', [HomeController:: class, 'doctor'])->name('doctors');
+Route::get('/blogs', [HomeController:: class, 'blog'])->name('blog');
+Route::get('/blogs/{slug}', [HomeController:: class, 'blog_detail'])->name('blog.detail');
+Route::post('/comment', [HomeController:: class, 'comment'])->name('comment');
 
 Route::get('/news-detail/{slug}', [HomeController:: class, 'newsDetail'])->name('news.detail');
 Route::get('/about1', [HomeController:: class, 'about'])->name('about');
 Route::get('/elaqe', [HomeController:: class, 'elaqe'])->name('elaqe');
-Route::get('/video-gallery1', [HomeController:: class, 'video_gallery'])->name('video.gallery');
-Route::get('/image-gallery1', [HomeController:: class, 'image_gallery'])->name('image.gallery');
+Route::get('/videos', [HomeController:: class, 'video_gallery'])->name('video.gallery');
+Route::get('/images', [HomeController:: class, 'image_gallery'])->name('image.gallery');
 Route::get('/service1/{slug}', [HomeController:: class, 'service_detail'])->name('service.detail');
 
 

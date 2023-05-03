@@ -182,11 +182,11 @@
                                     
                                 </ul>
                             </li>
-                            <li><a href="{{ route('elaqe') }}">Blog</a></li>
+                            <li><a href="{{ route('blog') }}">Blog</a></li>
                             <li class="dropdown"><a href="blog-default.html">Galleries</a>
                                 <ul>
-                                    <li><a href="blog-large.html">Image gallery</a></li>
-                                    <li><a href="blog-single.html">Video Gallery</a></li>
+                                    <li><a href="{{ route('image.gallery') }}">Image gallery</a></li>
+                                    <li><a href="{{ route('video.gallery') }}">Video Gallery</a></li>
                                 </ul>
                             </li>
                             <li><a href="{{ route('elaqe') }}">Contact Us</a></li>
