@@ -13,6 +13,7 @@ use App\Models\Contact;
 use App\Models\ContactMessage;
 use App\Models\Doctor;
 use App\Models\DoctorPosition;
+use App\Models\ImageGalery;
 use App\Models\News;
 use App\Models\NewsCategory;
 
@@ -20,6 +21,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Statistic;
 use App\Models\Support;
+use App\Models\VideoGalery;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\View;
 
@@ -126,13 +128,13 @@ class HomeController extends Controller
 
     public function image_gallery(){
        
-        $news = Blog::where('status',1)->paginate(18);
-        return view('front.blog.index',compact('news'));
+        $news = ImageGalery::where('status',1)->paginate(18);
+        return view('front.galeries.image-galery',compact('news'));
     }
     public function video_gallery(){
        
-        $news = Blog::where('status',1)->paginate(18);
-        return view('front.blog.index',compact('news'));
+        $news = VideoGalery::where('status',1)->paginate(18);
+        return view('front.galeries.video-galery',compact('news'));
     }
    
 

@@ -47,11 +47,10 @@
             <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
                 <div class="top-right clearfix">
                     <ul class="social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ $contact->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -80,7 +79,7 @@
                             </div>
                             <div class="text-holder">
                                 <h4>Call us now</h4>
-                                <span>+1-888-987-6543</span>    
+                                <span>{{ $contact->phone}}</span>    
                             </div>
                         </li>
                         <li>
@@ -88,8 +87,8 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h4>121 Park Drive</h4>
-                                <span>Varick St, Newyork 1006</span>    
+                                <h4>{{ $contact->translate(App::getLocale())->address }}</h4>
+                               
                             </div>
                         </li>
                         <li>
@@ -183,7 +182,7 @@
                                 </ul>
                             </li>
                             <li><a href="{{ route('blog') }}">Blog</a></li>
-                            <li class="dropdown"><a href="blog-default.html">Galleries</a>
+                            <li class="dropdown"><a href="#">Galleries</a>
                                 <ul>
                                     <li><a href="{{ route('image.gallery') }}">Image gallery</a></li>
                                     <li><a href="{{ route('video.gallery') }}">Video Gallery</a></li>

@@ -75,7 +75,7 @@
                                             <label for="titleInput" class="form-label">Youtube video id</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" id="titleInput" placeholder="title" name="title">
+                                            <input type="text" class="form-control" id="titleInput" placeholder="title" name="video">
                                         </div>
                                     </div>
                                     

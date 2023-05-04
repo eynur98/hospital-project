@@ -57,7 +57,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h5>Park Drive, Varick Str New York,<br> NY 10012, USA</h5>
+                                <h5>{{ $contact->translate(App::getLocale())->address }}</h5>
                             </div>
                         </li>
                         <li>
@@ -65,7 +65,7 @@
                                 <span class="flaticon-interface"></span>
                             </div>
                             <div class="text-holder">
-                                <h5>Getwell@Hospitals.com</h5>
+                                <h5>{{ $contact->email }}</h5>
                             </div>
                         </li>
                         <li>
@@ -73,7 +73,7 @@
                                 <span class="flaticon-technology-1"></span>
                             </div>
                             <div class="text-holder">
-                                <h5>(123) 0200 12345 & 7890</h5>
+                                <h5>{{ $contact->phone }}</h5>
                             </div>
                         </li>
                         <li>
@@ -132,10 +132,10 @@
             </div>
             <div class="col-md-4">
                 <ul class="footer-social-links">
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="{{ $contact->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
         </div>
