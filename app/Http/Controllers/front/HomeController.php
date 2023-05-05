@@ -50,7 +50,7 @@ class HomeController extends Controller
     public function index(){
         $sliders = Slider::where('status',1)->get();
       
-        $blogs = Blog::where('status', 1)->orderBy('created_at', 'ASC')->limit(3)->get();
+        $blogs = Blog::where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
        // $services = Service::where('slug', 'LIKE', '%plastic-surgery%')->get();
          $doctors = Doctor::where('status',1)->get();
         $statics = Statistic::where('status', 1)->get();
@@ -91,7 +91,7 @@ class HomeController extends Controller
     public function blog(){
        
         $news = Blog::where('status',1)->paginate(18);
-        return view('front.blog.index',compact('news'));
+        return view('front.blogs.index',compact('news'));
     }
 
     public function blog_detail($slug){
@@ -106,7 +106,7 @@ class HomeController extends Controller
 
     public function about(){
 
-        return view('front.about.index',['about'=>About::first(),'doctors'=>Doctor::where('status',1)->limit(4)->get()]);
+        return view('front.about.index',['about'=>About::first(),'doctors'=>Doctor::where('status',1)->limit(4)->get(),  'statics' => Statistic::where('status', 1)->get()]);
     }
 
     public function elaqe(){
@@ -122,8 +122,8 @@ class HomeController extends Controller
 
     public function service_detail($slug){
         $service = Service::whereSlug($slug)->first() ?? abort(404);
-      
-        return view('front.services.index',compact('service'));
+        $doctors = Doctor::where('status',1)->limit(3)->get();
+        return view('front.services.index',compact('service','doctors'));
     }
 
     public function image_gallery(){

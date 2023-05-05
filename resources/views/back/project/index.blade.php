@@ -18,7 +18,7 @@
 
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Layihələr</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Həkimlər</h4>
                             <button type="button"
                                 onclick="unSet()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
                         </div>
@@ -27,7 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Başlıq</th>
+                                    <th scope="col">Ad Soyad</th>
                                     <th scope="col">Foto</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
@@ -76,7 +76,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="partners_modalLabel">Layihə Əlavə Et</h5>
+                                <h5 class="modal-title" id="partners_modalLabel">Həkim Əlavə Et</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                             </div>
                             <div class="modal-body">
@@ -89,7 +89,7 @@
                                          <ul class="nav nav-pills">
                                             @foreach ($languages as $key=>$item )
                                              <li onclick="setTab('titleInput{{$item->code}}',this)" class="nav-item">
-                                                 <label for="titleInput{{$item->code}}" class="nav-link {{$key==0?'active':''}}" >Başlıq_{{$item->code}}</label>
+                                                 <label for="titleInput{{$item->code}}" class="nav-link {{$key==0?'active':''}}" >Ad Soyad_{{$item->code}}</label>
                                              </li>
                                              @endforeach
                                          </ul>
@@ -98,7 +98,7 @@
                                         @foreach ($languages as $item )
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
-                                            <input type="text" class="form-control "  placeholder="title {{$item->code}}" name="title:{{$item->code}}">  
+                                            <input type="text" class="form-control "  placeholder="Ad Soyad {{$item->code}}" name="title:{{$item->code}}">  
                                           <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
                                        
                                         </div>
@@ -146,6 +146,22 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                            <label for="titleInput" class="form-label">Email</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control" id="titleInput1" placeholder="Email" name="email">
+                                        </div>
+                                    </div> 
+                                    <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                            <label for="titleInput" class="form-label">Tel</label>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <input type="text" class="form-control" id="titleInput2" placeholder="Tel" name="phone">
                                         </div>
                                     </div>
                                     <div class="form-check form-check-secondary mb-3">
@@ -203,7 +219,7 @@
         $('#checkbox').prop("checked", false)
            $("#partner_form").attr('action','http://127.0.0.1:8000/doctor/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
-           $('#partners_modalLabel').text('Layihəni yenilə')
+           $('#partners_modalLabel').text('Həkimi yenilə')
            $.ajax({
                type: "GET",
                url: 'doctor/'+id_,
@@ -212,6 +228,8 @@
                {
                    $('#titleInput').val(data.title)
                    $('#titleInput').val(data.slug)
+                   $('#titleInput1').val(data.email)
+                   $('#titleInput2').val(data.phone)
                    $('#update_photo').css({'width':'80px','height':'80px'})
                    $('#update_photo').attr('src','/'+data.image)
                  

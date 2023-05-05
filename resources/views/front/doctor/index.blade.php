@@ -61,29 +61,30 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="single-team-member">
                                     <div class="img-holder">
-                                        <img src="{{asset('template')}}/images/team/1.jpg" alt="Awesome Image">
+                                        <img src="{{asset($doctor->image) }}" alt="Awesome Image">
                                         <div class="overlay-style">
                                             <div class="box">
                                                 <div class="content">
                                                     <div class="top">
-                                                        <h3>Marc Parcival</h3>
-                                                        <span>Prof. & HOD</span>
+                                                        <h3>{{$doctor->translate()->title}}</h3>
+                                                             <span>{{$doctor->doctor_pos->title ?? ''}}</span>
                                                     </div>
                                                     <span class="border"></span>
                                                     <div class="bottom">
                                                         <ul>
-                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
+                                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{$doctor->phone}}</li>
+                                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{$doctor->email}}</li>
                                                         </ul>    
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="text-holder">
-                                            <h3>Marc Parcival</h3> 
-                                            <span>Prof. & HOD</span>   
+                                            <h3>{{$doctor->translate()->title}}</h3> 
+                                                 <span>{{$doctor->doctor_pos->title ?? ''}}</span>   
                                         </div>    
                                     </div>
+                                </div>
                                 </div>
                             </div>
                             <!--End single item-->

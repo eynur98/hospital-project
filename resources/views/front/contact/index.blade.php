@@ -117,10 +117,10 @@
                         </li>
                     </ul>
                     <ul class="social-links">
-                        <li><a href="{{ $contact->facebbok }}"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="{{ $contact->facebbok ?? ''}}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ $contact->instagram ?? ''}}"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="{{ $contact->linkedin ?? ''}}"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ $contact->youtube ?? ''}}"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>    
             </div>

@@ -311,27 +311,27 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-team-member">
                     <div class="img-holder">
-                        <img src="{{asset('template') }}/images/team/1.jpg" alt="Awesome Image">
+                        <img src="{{asset($item->image) }}" alt="Awesome Image">
                         <div class="overlay-style">
                             <div class="box">
                                 <div class="content">
                                     <div class="top">
-                                        <h3>Marc Parcival</h3>
-                                        <span>Newyork</span>
+                                        <h3>{{$item->translate()->title}}</h3>
+                                        <span>{{$item->doctor_pos->title}}</span>
                                     </div>
                                     <span class="border"></span>
                                     <div class="bottom">
                                         <ul>
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
+                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{$item->phone}}</li>
+                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{$item->email}}</li>
                                         </ul>    
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-holder">
-                            <h3>Marc Parcival</h3> 
-                            <span>Newyork</span>   
+                            <h3>{{$item->translate()->title}}</h3> 
+                            <span>{{$item->doctor_pos->translate()->title}}</span>   
                         </div>    
                     </div>
                 </div>
@@ -389,16 +389,11 @@
             <!--Start single item-->
             <div class="col-md-12">
                 <div class="testimonial-carousel">
+
+
                     <!--Start single testimonial item-->
                     <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/1.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
+                        
                         <div class="text-holder">
                             <p>Mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.</p>
                         </div>
@@ -408,101 +403,8 @@
                         </div>
                     </div>
                     <!--End single testimonial item-->
-                    <!--Start single testimonial item-->
-                    <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/2.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <p>The master-builder of human happiness one rejects, dislikes, or avoids pleasure itself, because it is pleasure pursue.</p>
-                        </div>
-                        <div class="name">
-                            <h3>Peter Lawrence</h3>
-                            <span>California</span>
-                        </div>
-                    </div>
-                    <!--End single testimonial item-->
-                    <!--Start single testimonial item-->
-                    <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/1.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <p>Mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.</p>
-                        </div>
-                        <div class="name">
-                            <h3>Rossy Miranda</h3>
-                            <span>Newyork</span>
-                        </div>
-                    </div>
-                    <!--End single testimonial item-->
-                    <!--Start single testimonial item-->
-                    <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/2.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <p>The master-builder of human happiness one rejects, dislikes, or avoids pleasure itself, because it is pleasure pursue.</p>
-                        </div>
-                        <div class="name">
-                            <h3>Peter Lawrence</h3>
-                            <span>California</span>
-                        </div>
-                    </div>
-                    <!--End single testimonial item-->
-                    <!--Start single testimonial item-->
-                    <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/1.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <p>Mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.</p>
-                        </div>
-                        <div class="name">
-                            <h3>Rossy Miranda</h3>
-                            <span>Newyork</span>
-                        </div>
-                    </div>
-                    <!--End single testimonial item-->
-                    <!--Start single testimonial item-->
-                    <div class="single-testimonial-item text-center">
-                        <div class="img-box">
-                            <div class="img-holder">
-                                <img src="{{asset('template') }}/images/testimonial/2.png" alt="Awesome Image">
-                            </div>
-                            <div class="quote-box">
-                                <i class="fa fa-quote-left" aria-hidden="true"></i>    
-                            </div>
-                        </div>
-                        <div class="text-holder">
-                            <p>The master-builder of human happiness one rejects, dislikes, or avoids pleasure itself, because it is pleasure pursue.</p>
-                        </div>
-                        <div class="name">
-                            <h3>Peter Lawrence</h3>
-                            <span>California</span>
-                        </div>
-                    </div>
-                    <!--End single testimonial item-->
+
+                    
                 </div>
             </div>
             <!--End single item-->
@@ -520,90 +422,40 @@
             <span class="border"></span>
         </div>
         <div class="row">
+
+
+@foreach ($blogs as $item)
+    
+
             <!--Start single blog item-->
             <div class="col-md-4">
                 <div class="single-blog-item">
                     <div class="img-holder">
-                        <img src="{{asset('template') }}/images/blog/latest-blog-1.jpg" alt="Awesome Image">
+                        <img src="{{asset($item->image) }}" alt="Awesome Image">
                         <div class="overlay-style-one">
                             <div class="box">
                                 <div class="content">
-                                    <a href="blog-single.html"><span class="flaticon-plus-symbol"></span></a>
+                                    <a href="{{route('blog.detail',$item->slug)}}"><span class="flaticon-plus-symbol"></span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="text-holder">
-                        <a href="blog-single.html">
-                            <h3 class="blog-title">How to handle your kids’ from mystery ailments</h3>
+                        <a href="{{route('blog.detail',$item->slug)}}">
+                            <h3 class="blog-title">{{$item->translate(App::getLocale())->title}}</h3>
                         </a>
                         <div class="text">
-                            <p>The great explorer of the truth, master builder of human happiness one rejects, dislikes, or avoids pleasure itself because it is pleasure.</p>
+                            <p>{!!Str::limit($item->translate(App::getLocale())->description,150,'...')!!}</p>
                         </div>
                         <ul class="meta-info">
-                            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>February 14, 2017</a></li>
-                            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>21 Comments</a></li>
+                            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{$item->created_at->format('M d, Y')}}</a></li>
+                           
                         </ul>
                     </div>    
                 </div>    
             </div>
             <!--End single blog item-->
-            <!--Start single blog item-->
-            <div class="col-md-4">
-                <div class="single-blog-item">
-                    <div class="img-holder">
-                        <img src="{{asset('template') }}/images/blog/latest-blog-2.jpg" alt="Awesome Image">
-                        <div class="overlay-style-one">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="blog-single.html"><span class="flaticon-plus-symbol"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="blog-single.html">
-                            <h3 class="blog-title">Negative statin stories add to heart health risk</h3>
-                        </a>
-                        <div class="text">
-                            <p>There anyone who loves or pursues or desires to obtain pains of itself, because it is pain because occasionally circumstances occur.</p>
-                        </div>
-                        <ul class="meta-info">
-                            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>January 21, 2017</a></li>
-                            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18 Comments</a></li>
-                        </ul>
-                    </div>    
-                </div>    
-            </div>
-            <!--End single blog item-->
-            <!--Start single blog item-->
-            <div class="col-md-4">
-                <div class="single-blog-item">
-                    <div class="img-holder">
-                        <img src="{{asset('template') }}/images/blog/latest-blog-3.jpg" alt="Awesome Image">
-                        <div class="overlay-style-one">
-                            <div class="box">
-                                <div class="content">
-                                    <a href="blog-single.html"><span class="flaticon-plus-symbol"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-holder">
-                        <a href="blog-single.html">
-                            <h3 class="blog-title">Lung cancer survival rate in England improves</h3>
-                        </a>
-                        <div class="text">
-                            <p>Which toil and pain can procure him some great pleasure. To take a trivial example, which of us  laborious physical exercise.</p>
-                        </div>
-                        <ul class="meta-info">
-                            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>January 15, 2017</a></li>
-                            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>09 Comments</a></li>
-                        </ul>
-                    </div>    
-                </div>    
-            </div>
-            <!--End single blog item-->
+            @endforeach
         </div>
     </div>
 </section>

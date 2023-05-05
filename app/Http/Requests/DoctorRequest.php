@@ -44,6 +44,8 @@ class DoctorRequest extends FormRequest
         $return[] = [
             'doctor_position_id'=>['required','max:11'],
             'slug' => ['max:255'],
+            'email' => ['max:255'],
+            'phone' => ['max:255'],
             'status'=>['max:2'],
             'order'=>['max:11'],
             'at_home'=>['max:2'],

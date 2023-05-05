@@ -20,6 +20,8 @@ return new class extends Migration
             $table->enum('status',['1','0'])->default('1');
             $table->enum('at_home',['1','0'])->default('1');
             $table->string('image')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->unsignedInteger('order')->nullable();
             $table->timestamps();
 

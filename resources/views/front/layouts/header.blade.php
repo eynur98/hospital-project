@@ -47,10 +47,10 @@
             <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
                 <div class="top-right clearfix">
                     <ul class="social-links">
-                        <li><a href="{{ $contact->facebook }}"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
-                        <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="{{ $contact->facebook  ?? ''}}"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="{{ $contact->instagram ?? ''}}"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="{{ $contact->youtube   ?? ''}}"><i class="fa fa-youtube"></i></a></li>
+                        <li><a href="{{ $contact->linkedin  ?? ''}}"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="text-holder">
                                 <h4>Call us now</h4>
-                                <span>{{ $contact->phone}}</span>    
+                                <span>{{ $contact->phone ?? ''}}</span>    
                             </div>
                         </li>
                         <li>
@@ -87,7 +87,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h4>{{ $contact->translate(App::getLocale())->address }}</h4>
+                                <h4>{{ $contact->translate(App::getLocale())->address ?? ''}}</h4>
                                
                             </div>
                         </li>

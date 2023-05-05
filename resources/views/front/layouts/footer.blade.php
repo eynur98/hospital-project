@@ -1,4 +1,4 @@
-<!--Start footer area-->  
+ ?? ''<!--Start footer area-->  
 <footer class="footer-area">
     <div class="container">
         <div class="row">
@@ -25,21 +25,21 @@
                         <span class="border"></span>
                     </div>
                     <ul class="usefull-links fl-lft">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Awards</a></li>
-                        <li><a href="#">Consultants</a></li>
-                        <li><a href="#">Working Hours</a></li>
-                        <li><a href="#">Procedures</a></li>
-                        <li><a href="#">Special Offers</a></li>
-                        <li><a href="#">FAQ’s</a></li>
+                       
+                        <li><a href="{{route('home')}}">Home</a></li>
+                        <li><a href="{{route('about')}}">About Us</a></li>
+                        <li><a href="{{route('image.gallery')}}">Image Gallery</a></li>
+                        <li><a href="{{route('video.gallery')}}">Video Gallery</a></li>
+                        <li><a href="{{route('elaqe')}}">Contact</a></li>
+                        <li><a href="#">Services</a></li>
+                      {{--   <li><a href="#">Doctors</a></li> --}}
                     </ul>
                     <ul class="usefull-links">
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Healthy Foods</a></li>
-                        <li><a href="#">Appointments</a></li>
-                        <li><a href="#">Latest News</a></li>
-                        <li><a href="#">Certificates</a></li>
-                        <li><a href="#">Qualifications</a></li>
+                        @foreach ($services->take(6) as $item)
+                        <li><a href="{{ route('service.detail',$item->slug) }}">{{ $item->translate(App::getLocale())->title }}</a></li>
+                        @endforeach
+                       
+                        
                     </ul>
                 </div>
             </div>
@@ -132,10 +132,10 @@
             </div>
             <div class="col-md-4">
                 <ul class="footer-social-links">
-                    <li><a href="{{ $contact->facebook }}"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="{{ $contact->instagram }}"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="{{ $contact->youtube }}"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="{{ $contact->linkedin }}"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="{{ $contact->facebook  ?? ''}}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{ $contact->instagram  ?? ''}}"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="{{ $contact->youtube  ?? ''}}"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="{{ $contact->linkedin ?? '' }}"><i class="fa fa-linkedin"></i></a></li>
                 </ul>
             </div>
         </div>

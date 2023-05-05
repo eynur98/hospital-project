@@ -322,34 +322,20 @@
             <!--Start single item-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <ul>
+
+                    @foreach ($statics as $item)
                     <li>
                         <div class="single-item text-center">
                             <div class="icon-holder">
                                 <span class="flaticon-medical"></span> 
                             </div>
-                            <h1><span class="timer" data-from="1" data-to="25" data-speed="5000" data-refresh-interval="50">25</span></h1>
-                            <h3>Years of Experience</h3>
+                            <h1><span class="timer" data-from="1" data-to="{{$item->statistica}}" data-speed="5000" data-refresh-interval="50">{{$item->statistica}}</span></h1>
+                            <h3>{{$item->translate(App::getLocale())->title}}</h3>
                         </div>
                     </li>
-                    <li>
-                        <div class="single-item text-center">
-                            <div class="icon-holder">
-                                <span class="flaticon-smile"></span> 
-                            </div>
-                            <h1><span class="timer" data-from="1" data-to="284" data-speed="5000" data-refresh-interval="50">284</span></h1>
-                            <h3>Well Smiley Faces</h3>
-                        </div>
-                    </li>
-                 
-                    <li>
-                        <div class="single-item text-center">
-                            <div class="icon-holder">
-                                <span class="flaticon-ribbon"></span> 
-                            </div>
-                            <h1><span class="timer" data-from="1" data-to="142" data-speed="5000" data-refresh-interval="50">142</span></h1>
-                            <h3>Awards Holded</h3>
-                        </div>
-                    </li>
+                    @endforeach
+                   
+                   
                 </ul>
             </div>
             <!--End single item-->
@@ -375,27 +361,27 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-team-member">
                     <div class="img-holder">
-                        <img src="{{ asset('template') }}/images/team/1.jpg" alt="Awesome Image">
+                        <img src="{{asset($item->image) }}" alt="Awesome Image">
                         <div class="overlay-style">
                             <div class="box">
                                 <div class="content">
                                     <div class="top">
-                                        <h3>Marc Parcival</h3>
-                                        <span>Newyork</span>
+                                        <h3>{{$item->translate()->title}}</h3>
+                                             <span>{{$item->doctor_pos->title}}</span>
                                     </div>
                                     <span class="border"></span>
                                     <div class="bottom">
                                         <ul>
-                                            <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
+                                            <li><i class="fa fa-phone" aria-hidden="true"></i> {{$item->phone}}</li>
+                                            <li><i class="fa fa-envelope" aria-hidden="true"></i> {{$item->email}}</li>
                                         </ul>    
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-holder">
-                            <h3>Marc Parcival</h3> 
-                            <span>Newyork</span>   
+                            <h3>{{$item->translate()->title}}</h3> 
+                                 <span>{{$item->doctor_pos->title}}</span>   
                         </div>    
                     </div>
                 </div>
@@ -411,7 +397,7 @@
 <!--End team area--> 
 
 <!--Start certificates area-->  
-<section class="certificates-area">
+{{-- <section class="certificates-area">
     <div class="container">
         <div class="sec-title">
             <h1>Awards & Recognition</h1>
@@ -508,7 +494,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!--End certificates area-->  
 
 @endsection

@@ -118,96 +118,41 @@
                         <span class="border"></span>
                     </div>
                     <div class="row">
+                        @foreach ($doctors as $item)
+    
                         <!--Start single item-->
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="single-team-member">
                                 <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/team/1.jpg" alt="Awesome Image">
+                                    <img src="{{asset($item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style">
                                         <div class="box">
                                             <div class="content">
                                                 <div class="top">
-                                                    <h3>Marc Parcival</h3>
-                                                    <span>Newyork</span>
+                                                    <h3>{{$item->translate()->title}}</h3>
+                                                         <span>{{$item->doctor_pos->title}}</span>
                                                 </div>
                                                 <span class="border"></span>
                                                 <div class="bottom">
                                                     <ul>
-                                                        <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
+                                                        <li><i class="fa fa-phone" aria-hidden="true"></i> {{$item->phone}}</li>
+                                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> {{$item->email}}</li>
                                                     </ul>    
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="text-holder">
-                                        <h3>Marc Parcival</h3> 
-                                        <span>Newyork</span>   
+                                        <h3>{{$item->translate()->title}}</h3> 
+                                             <span>{{$item->doctor_pos->title}}</span>   
                                     </div>    
                                 </div>
                             </div>
                         </div>
                         <!--End single item-->
-                        <!--Start single item-->
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="single-team-member">
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/team/2.jpg" alt="Awesome Image">
-                                    <div class="overlay-style">
-                                        <div class="box">
-                                            <div class="content">
-                                                <div class="top">
-                                                    <h3>Alen Bailey</h3>
-                                                    <span>Newyork</span>
-                                                </div>
-                                                <span class="border"></span>
-                                                <div class="bottom">
-                                                    <ul>
-                                                        <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
-                                                    </ul>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h3>Marc Parcival</h3> 
-                                        <span>Newyork</span>   
-                                    </div>    
-                                </div>
-                            </div>
-                        </div>
-                        <!--End single item-->
-                        <!--Start single item-->
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div class="single-team-member">
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/team/3.jpg" alt="Awesome Image">
-                                    <div class="overlay-style">
-                                        <div class="box">
-                                            <div class="content">
-                                                <div class="top">
-                                                    <h3>Basil Andrew</h3>
-                                                    <span>Newyork</span>
-                                                </div>
-                                                <span class="border"></span>
-                                                <div class="bottom">
-                                                    <ul>
-                                                        <li><i class="fa fa-phone" aria-hidden="true"></i> +321 567 89 0123</li>
-                                                        <li><i class="fa fa-envelope" aria-hidden="true"></i> Bailey@Hospitals.com</li>
-                                                    </ul>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="text-holder">
-                                        <h3>Marc Parcival</h3> 
-                                        <span>Newyork</span>   
-                                    </div>    
-                                </div>
-                            </div>
-                        </div>
-                        <!--End single item-->
+            
+                        @endforeach
+                      
                     </div>
                 </div>   
             </div> 
@@ -256,7 +201,7 @@
                                         <span class="flaticon-pin"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>Park Drive, Varick 2nd Str<br>NY 10012, USA</h5>
+                                        <h5>{{$contact->translate(App::getLocale())->address}}</h5>
                                     </div>
                                 </li>
                                 <li>
@@ -264,7 +209,7 @@
                                         <span class="flaticon-technology"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>Getwell@Hospitals.com</h5>
+                                        <h5>{{$contact->email}}</h5>
                                     </div>
                                 </li>
                                 <li>
@@ -272,7 +217,7 @@
                                         <span class="flaticon-technology-1"></span>
                                     </div>
                                     <div class="text-holder">
-                                        <h5>(123) 0200 12345 & 7890</h5>
+                                        <h5>{{$contact->phone}}</h5>
                                     </div>
                                 </li>
                             </ul>

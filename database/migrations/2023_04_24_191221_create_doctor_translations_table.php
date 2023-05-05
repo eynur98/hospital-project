@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('doctor_id');
             $table->string('locale');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('doctor_id')
