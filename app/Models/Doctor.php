@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Doctor extends Model implements TranslatableContract
 {
@@ -22,6 +23,11 @@ class Doctor extends Model implements TranslatableContract
         public function doctor_pos(): BelongsTo
         {
             return $this->belongsTo(DoctorPosition::class,'doctor_position_id','id');
+        }
+
+        public function certificates()
+        {
+            return $this->hasMany(Certificate::class);
         }
     
 }

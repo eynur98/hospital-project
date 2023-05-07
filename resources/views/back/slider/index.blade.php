@@ -99,8 +99,17 @@
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
                                             <input type="text" class="form-control "  placeholder="title {{$item->code}}" name="title:{{$item->code}}"> 
-                                            <input type="text" class="form-control "  placeholder="link title {{$item->code}}" name="link_title:{{$item->code}}">  
-                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
+                                            @error("title:".$item->code)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                            <input type="text" class="form-control "  placeholder="link title {{$item->code}}" name="link_title:{{$item->code}}"> 
+                                            @error("link_title:".$item->code)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror 
+                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
+                                          @error("description:".$item->code)
+                                          <div class="text-danger">{{ $message }}</div>
+                                      @enderror
                                        
                                         </div>
                                          @endforeach
@@ -122,6 +131,9 @@
                                                 <input class="form-control" name="image" type="file" id="foto">
 
                                         </div>
+                                        @error("image")
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
 
 
@@ -171,7 +183,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)

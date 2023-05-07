@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\back\AuthController;
+use App\Http\Controllers\back\NewsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\front\AuthController as FrontAuthController;
 use App\Http\Controllers\front\CartController;
@@ -34,12 +35,13 @@ Route::get('pagination', [PaginationController::class, 'index']);
 //front
 Route::get('/', [HomeController:: class, 'index'])->name('home');
 Route::get('/news1/{slug}', [HomeController:: class, 'news'])->name('news');
-Route::get('/doctor1/{slug}', [HomeController:: class, 'doctor'])->name('doctors');
+Route::get('/doctors/{slug}', [HomeController:: class, 'doctor'])->name('doctors');
 Route::get('/blogs', [HomeController:: class, 'blog'])->name('blog');
 Route::get('/blogs/{slug}', [HomeController:: class, 'blog_detail'])->name('blog.detail');
-Route::post('/comment', [HomeController:: class, 'comment'])->name('comment');
+
 
 Route::get('/news-detail/{slug}', [HomeController:: class, 'newsDetail'])->name('news.detail');
+Route::get('/doctor-detail/{slug}', [HomeController:: class, 'doctor_detail'])->name('doctor.detail');
 Route::get('/about1', [HomeController:: class, 'about'])->name('about');
 Route::get('/elaqe', [HomeController:: class, 'elaqe'])->name('elaqe');
 Route::get('/videos', [HomeController:: class, 'video_gallery'])->name('video.gallery');
@@ -48,8 +50,8 @@ Route::get('/service1/{slug}', [HomeController:: class, 'service_detail'])->name
 
 
 //});
-
-
+Route::post('/comment', [HomeController:: class, 'comment'])->name('comment');
+Route::get('/search', [HomeController:: class, 'search'])->name('search');
 
 
 
@@ -70,6 +72,9 @@ Route::post('/admin-post', [AuthController:: class, 'login_post'])->name('log_in
     Route::resource('video-gallery', 'App\Http\Controllers\back\VideoGallery')->names('vgallery');
     Route::resource('cerificate', 'App\Http\Controllers\back\CertificateController')->names('certificates');
     Route::resource('statistica', 'App\Http\Controllers\back\StatisticaController')->names('statistica');
+    Route::get('/comment/{id}', [NewsController:: class, 'comment'])->name('news.comment');
+    Route::post('/comment-status/{id}', [NewsController:: class, 'comment_status'])->name('comment.status');
+    Route::delete('/comment-delete/{id}', [NewsController:: class, 'comment_destroy'])->name('comment.destroy');
 
    // Route::resource('doctor-position', 'App\Http\Controllers\back\DoctorPositionController')->names('project.category');
     Route::resource('doctor', 'App\Http\Controllers\back\DoctorController')->names('project');
@@ -86,7 +91,9 @@ Route::post('/admin-post', [AuthController:: class, 'login_post'])->name('log_in
     Route::get('delete-image/{id}', [App\Http\Controllers\back\ProductController::class, 'image_destroy'])->name('image.destroy');
     Route::get('delete-file/{id}', [App\Http\Controllers\back\ProductController::class, 'file_destroy'])->name('file.destroy');
 
-
+    Route::delete('delete-appointment/{id}', [App\Http\Controllers\back\AppointmentController::class, 'delete'])->name('appointment.destroy');
+    Route::post('create-appointment', [App\Http\Controllers\back\AppointmentController::class, 'store'])->name('appointment.add');
+    Route::get('appointment', [App\Http\Controllers\back\AppointmentController::class, 'index'])->name('appointment.index');
     Route::get('/admin/dash', function () {
         return view('back.dashboard');
     })->name('dashboard');

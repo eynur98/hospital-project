@@ -18,7 +18,7 @@
 
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Partnyorlar və Referanslar</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Translates</h4>
                             <button type="button"
                                 onclick="unSet()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
                         </div>
@@ -37,8 +37,8 @@
                                     <tr>
 
                                         <th scope="row"><a href="#" class="fw-semibold">#{{$partner->id}}</a></th>
-                                        <td>{{$partner->key}}</td>
-                                        <td> {{$partner->translate('az')->text}}</td>
+                                        <td>{{Str::limit($partner->key,150,'...')}}</td>
+                                        <td> {{Str::limit($partner->translate(App::getLocale())->text,100,'...')}}</td>
                                      
                                         <td>
                                             <div class="flex-wrap gap-3 hstack">
@@ -62,8 +62,11 @@
 
                                 </tbody>
                             </table>
+                         <div style="">{{ $tercume->links() }}</div>   
                         </div>
+                      
                     </div>
+
                 </div>
                 <!-- Default Modals -->
 {{-- custom tab --}}
@@ -88,6 +91,9 @@
                                     </div>
                                     <div class="col-lg-9">
                                         <input type="text" class="form-control" id="titleInput" placeholder="Key" name="key">
+                                        @error("key")
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                     </div>
                                 </div>
                                    <div class="row mb-3">
@@ -106,8 +112,10 @@
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
                                             
-                                          <textarea name="text:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
-                                       
+                                          <textarea name="text:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
+                                          @error("text:".$item->code)
+                                          <div class="text-danger">{{ $message }}</div>
+                                      @enderror
                                         </div>
                                          @endforeach
                                         </div>
@@ -144,7 +152,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)
@@ -159,7 +169,7 @@
         ;
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/tercume/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8001/tercume/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Xəbəri yenilə')
            $.ajax({

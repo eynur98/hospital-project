@@ -30,6 +30,8 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+
+        try{
         $requests=$request->all();
       /*  dd($requests=$request->all()); */
         $photo = new FIle_download();
@@ -44,7 +46,17 @@ class CategoryController extends Controller
             $requests['home']='0';
         }
         Category::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -68,6 +80,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+
+        try{
         $category = Category::find($id);
      
         $requests=$request->all();
@@ -84,7 +98,17 @@ class CategoryController extends Controller
         $requests['home']='0';
     }
       $category->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -96,6 +120,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

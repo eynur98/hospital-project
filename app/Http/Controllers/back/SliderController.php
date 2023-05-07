@@ -39,6 +39,7 @@ class SliderController extends Controller
      */
     public function store(SliderRequest $request)
     {
+        try{
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -50,7 +51,16 @@ class SliderController extends Controller
             $requests['status']='0';
         }
         Slider::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+    }
+    catch (\Exception $e) {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+        if ($validator->fails()) {
+           return response()->json($validator->errors(), 422);
+        }
+    
+    }
     }
 
     /**
@@ -84,6 +94,8 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        try{
         $category = Slider::find($id);
      
         $requests=$request->all();
@@ -97,7 +109,17 @@ class SliderController extends Controller
         $requests['status']='0';
     }
       $category->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -109,6 +131,6 @@ class SliderController extends Controller
     public function destroy($id)
     {
         Slider::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

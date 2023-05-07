@@ -40,6 +40,8 @@ class BlogController extends Controller
      */
     public function store(BlogRequest $request)
     {
+
+        try{
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -52,7 +54,17 @@ class BlogController extends Controller
         }
    
         Blog::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -86,6 +98,8 @@ class BlogController extends Controller
      */
     public function update(BlogRequest $request, $id)
     {
+
+        try{
         $support = Blog::find($id);
      
           $requests=$request->all();
@@ -102,7 +116,17 @@ class BlogController extends Controller
       
      
         $support->update($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -114,6 +138,6 @@ class BlogController extends Controller
     public function destroy($id)
     {
         Blog::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

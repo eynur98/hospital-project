@@ -27,7 +27,7 @@ class VideoGaleryRequest extends FormRequest
             'status'=>['max:2'],
             'order'=>['max:11'],
             'at_home'=>['max:2'],
-            'video'=>['max:2024']
+            'video'=>['required','max:2024']
         ];
     }
 }

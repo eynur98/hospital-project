@@ -34,7 +34,7 @@ class DoctorRequest extends FormRequest
             $return[] = [
                
                 'title:' . $lang['code'] => ['required', 'max:255'],
-                'description:' . $lang['code'] => ['nullable'],
+                'description:'. $lang['code'] => ['required'],
            
             ];
 
@@ -43,7 +43,7 @@ class DoctorRequest extends FormRequest
 
         $return[] = [
             'doctor_position_id'=>['required','max:11'],
-            'slug' => ['max:255'],
+            'slug' => ['required','max:255'],
             'email' => ['max:255'],
             'phone' => ['max:255'],
             'status'=>['max:2'],

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
+use App\Models\Certificate;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Services\FIle_download;
@@ -41,6 +42,8 @@ class DoctorController extends Controller
      */
     public function store(DoctorRequest $request)
     {
+
+        
         $requests=$request->all();
        
       
@@ -53,8 +56,26 @@ class DoctorController extends Controller
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
-        Doctor::create($requests);
-        return redirect()->back();
+        $doctor=Doctor::create($requests);
+        foreach ($request->file('images') as $imagefile) {
+            $image = new Certificate();
+            $imageName= time() . "-" . uniqid() . '.' .$imagefile->getClientOriginalExtension();
+            $imagefile->move(public_path('uploads'),$imageName);
+            $image->image='/uploads/'.$imageName;
+            $image->doctor_id = $doctor->id;
+            $image->save();
+          }
+
+        return redirect()->back()->with('success','');
+
+    
+   
+
+    //  if ($validator->fails()) {
+    //     return response()->json($validator->errors(), 422);
+    //  }
+ 
+ 
     }
 
     /**
@@ -65,7 +86,8 @@ class DoctorController extends Controller
      */
     public function show($id)
     {
-        return Doctor::find($id);
+      //  dd(Doctor::find($id));
+        return Doctor::with('certificates')->find($id);
     }
 
     /**
@@ -88,6 +110,8 @@ class DoctorController extends Controller
      */
     public function update(DoctorRequest $request, $id)
     {
+
+    
         $project = Doctor::find($id);
      
           $requests=$request->all();
@@ -106,9 +130,39 @@ class DoctorController extends Controller
       
      
         $project->update($requests);
-        return redirect()->back();
+
+            Certificate::whereDoctorId($id)->delete();
+          
+        foreach ($request->images as $imagefile) {
+       
+            $image = new Certificate();
+            if ($request->hasFile('images')) {
+                $imageName= time() . "-" . uniqid() . '.' .$imagefile->getClientOriginalExtension();
+            $imagefile->move(public_path('uploads'),$imageName);
+            $image->image='/uploads/'.$imageName;
+            $image->doctor_id = $project->id;
+            }else{
+                
+                $image->image = $imagefile;
+                $image->doctor_id = $project->id;
+            }
+            $image->save();
+          }
+        return redirect()->back()->with('success','');
+
+    
+//     catch (\Exception $e) {
+//      $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+//      if ($validator->fails()) {
+//         return response()->json($validator->errors(), 422);
+//      }
+ 
+//  }
     }
 
+    
+ 
     /**
      * Remove the specified resource from storage.
      *
@@ -118,6 +172,6 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         Doctor::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

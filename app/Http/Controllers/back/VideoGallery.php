@@ -39,6 +39,8 @@ class VideoGallery extends Controller
      */
     public function store(VideoGaleryRequest $request)
     {
+
+        try{
         $requests=$request->all();
        
       
@@ -46,7 +48,17 @@ class VideoGallery extends Controller
             $requests['status']='0';
         }
         VideoGalery::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -80,6 +92,8 @@ class VideoGallery extends Controller
      */
     public function update(VideoGaleryRequest $request, $id)
     {
+
+        try{
         $certificate = VideoGalery::find($id);
      
         $requests=$request->all();
@@ -92,7 +106,17 @@ class VideoGallery extends Controller
     
    
       $certificate->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -104,6 +128,6 @@ class VideoGallery extends Controller
     public function destroy($id)
     {
         VideoGalery::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

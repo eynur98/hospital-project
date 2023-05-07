@@ -40,6 +40,8 @@ class DoctorPositionController extends Controller
      */
     public function store(DoctorPositonRequest $request)
     {
+
+        try{
         $requests=$request->all();
        
         
@@ -47,7 +49,17 @@ class DoctorPositionController extends Controller
             $requests['status']='0';
         }
         DoctorPosition::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -81,6 +93,8 @@ class DoctorPositionController extends Controller
      */
     public function update(DoctorPositonRequest $request, $id)
     {
+
+        try{
         $category = DoctorPosition::find($id);
         $requests=$request->all();
      
@@ -90,7 +104,17 @@ class DoctorPositionController extends Controller
     }
     
       $category->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -102,6 +126,6 @@ class DoctorPositionController extends Controller
     public function destroy($id)
     {
         DoctorPosition::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

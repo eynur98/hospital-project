@@ -17,4 +17,8 @@ class News extends Model implements TranslatableContract
     public function news_category(){
         return $this->belongsTo(NewsCategory::class);
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class)->where('status',1);
+    }
 }

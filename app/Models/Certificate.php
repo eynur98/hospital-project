@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Certificate extends Model
 {
     use HasFactory;
-    protected $fillable =  ['image'];
+    protected $fillable =  ['image','doctor_id'];
 }

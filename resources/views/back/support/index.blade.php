@@ -18,7 +18,7 @@
 
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Texniki dəstək</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Blog</h4>
                             <button type="button"
                                 onclick="unSet()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
                         </div>
@@ -76,7 +76,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="partners_modalLabel">Xəbər Əlavə Et</h5>
+                                <h5 class="modal-title" id="partners_modalLabel">Blog Əlavə Et</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"> </button>
                             </div>
                             <div class="modal-body">
@@ -99,8 +99,13 @@
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
                                             <input type="text" class="form-control "  placeholder="title {{$item->code}}" name="title:{{$item->code}}">  
+                                            @error("title:".$item->code)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                           <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
-                                       
+                                          @error("description:".$item->code)
+                                          <div class="text-danger">{{ $message }}</div>
+                                      @enderror
                                         </div>
                                          @endforeach
                                         </div>
@@ -119,7 +124,9 @@
 
                                             <img id="update_photo"/>
                                                 <input class="form-control" name="image" type="file" id="foto">
-
+                                                @error("image")
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -131,6 +138,9 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                            @error("slug")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-check form-check-secondary mb-3">
@@ -171,7 +181,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)
@@ -188,7 +200,7 @@
         $('#checkbox').prop("checked", false)
            $("#partner_form").attr('action','http://127.0.0.1:8000/blog/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
-           $('#partners_modalLabel').text('Xəbəri yenilə')
+           $('#partners_modalLabel').text('Blog yenilə')
            $.ajax({
                type: "GET",
                url: 'blog/'+id_,

@@ -7,7 +7,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>About Us</h1>
+	                <h1>{{ __('lang.About Us') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -18,9 +18,9 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">About Us</li>
+                            <li class="active">{{ __('lang.About Us') }}</li>
                         </ul>
                     </div>
                     
@@ -48,9 +48,9 @@
                         <p>{!! $about->translate(App::getLocale())->text !!}</p>    
                     </div>
                     
-                    <div class="button">
+                    {{-- <div class="button">
                         <a class="thm-btn bgclr-1" href="#">Our Departments</a>
-                    </div>    
+                    </div>     --}}
                 </div>
             </div>
         </div>
@@ -153,10 +153,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title pull-left">
-                    <h2>If you are a patient seeking quality healthcare at affordable prices!.</h2>
+                    <h2>{{ __('lang.If you are a patient seeking quality healthcare at affordable prices!.') }}</h2>
                 </div>
                 <div class="button pull-right">
-                    <a class="thm-btn bgclr-1" href="#">Make an Appointment</a>
+                    <a class="thm-btn bgclr-1" href="#">{{ __('lang.Make an Appointment') }}</a>
                 </div>
             </div>
         </div>
@@ -315,8 +315,8 @@
 <section class="fact-counter-area black-bg" style="background-image:url({{ asset('template') }}/images/resources/fact-counter-bg-v2.jpg);">
     <div class="container">
         <div class="sec-title text-center">
-            <h1>Keep <span>your headup</span> & be patient</h1>
-            <p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the<br> system and expound the actual teachings of the great.</p>
+            <h1>{{ __('lang.Keep your headup & be patient') }}</h1>
+            <p>{{ __('lang.about text') }}</p>
         </div>
         <div class="row">
             <!--Start single item-->
@@ -349,7 +349,7 @@
 <section class="team-area doctor">
     <div class="container">
         <div class="sec-title mar0auto text-center">
-            <h1>Meet Our Doctors</h1>
+            <h1>{{ __('lang.Doctors') }}</h1>
             <span class="border"></span>
         </div>
         <div class="row">

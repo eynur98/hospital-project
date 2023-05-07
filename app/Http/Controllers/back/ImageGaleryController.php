@@ -40,6 +40,7 @@ class ImageGaleryController extends Controller
      */
     public function store(ImageGaleryRequest $request)
     {
+        try{
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -51,7 +52,17 @@ class ImageGaleryController extends Controller
             $requests['status']='0';
         }
         ImageGalery::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -85,6 +96,7 @@ class ImageGaleryController extends Controller
      */
     public function update(ImageGaleryRequest $request, $id)
     {
+        try{
         $certificate = ImageGalery::find($id);
      
         $requests=$request->all();
@@ -101,7 +113,17 @@ class ImageGaleryController extends Controller
     
    
       $certificate->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -113,6 +135,6 @@ class ImageGaleryController extends Controller
     public function destroy($id)
     {
         ImageGalery::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

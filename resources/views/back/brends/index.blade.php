@@ -96,7 +96,10 @@
                                         </header>
                                         <div class="titlesParent">
                                         @foreach ($languages as $item )
-                                         <input type="text" class="form-control title__input" id="titleInput{{$item->code}}" placeholder="title {{$item->code}}" name="title:{{$item->code}}">   
+                                         <input type="text" class="form-control title__input" id="titleInput{{$item->code}}" placeholder="title {{$item->code}}" name="title:{{$item->code}}">  
+                                         @error("title:".$item->code)
+                                         <div class="text-danger">{{ $message }}</div>
+                                     @enderror 
                                          @endforeach
                                         </div>
                                      </div>
@@ -123,6 +126,9 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                            @error("slug")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-check form-check-secondary mb-3">
@@ -163,7 +169,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)

@@ -88,11 +88,11 @@
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Video Qalereyası</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('certificates.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Sertifikatlar</span>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('statistica.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Statistika</span>
@@ -155,6 +155,11 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{route('tercume.index')}}">
                                 <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Tercume</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{route('appointment.index')}}">
+                                <i class="mdi mdi-puzzle-outline"></i> <span data-key="t-widgets">Qebul</span>
                             </a>
                         </li>
 

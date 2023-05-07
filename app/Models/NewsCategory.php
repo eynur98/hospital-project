@@ -13,4 +13,8 @@ class NewsCategory extends Model implements TranslatableContract
 
     public $translatedAttributes = ['title' ];
     protected $fillable = ['slug','order','image','status'];
+
+    public function news(){
+        return $this->hasMany(News::class);
+    }
 }

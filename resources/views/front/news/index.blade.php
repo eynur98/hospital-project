@@ -6,7 +6,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>News Default</h1>
+	                <h1>{{ __('lang.News') }} </h1>
 	            </div>
 	        </div>
 	    </div>
@@ -17,16 +17,12 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">News Default</li>
+                            <li class="active">{{ __('lang.News') }} </li>
                         </ul>
                     </div>
-                    <div class="right pull-right">
-                        <a href="#">
-                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
-                        </a>   
-                    </div>    
+
                 </div>
             </div>
         </div>
@@ -46,7 +42,7 @@
 
                         @foreach ($news as $item)
                             
-                     
+                     {{-- {{ dd(Str::limit($item->translate(App::getLocale())->description, 150, '...') ) }} --}}
                         <!--Start single blog post-->
                         <div class="col-md-6">   
                             <div class="single-blog-item wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
@@ -62,14 +58,14 @@
                                 </div>
                                 <div class="text-holder">
                                     <a href="{{ route('news.detail',$item->slug) }}">
-                                        <h3 class="blog-title">{{ $item->translate(App::getLocale())->title }}</h3>
+                                        <h3 class="blog-title">{{ $item->translate(App::getLocale())->title ?? '' }}</h3>
                                     </a>
                                     <div class="text">
-                                        <p>{{ Str::limit($item->translate(App::getLocale())->description, 150, '...') }}</p>
+                                        <p>{{ Str::limit($item->description, 150, '...') ?? '' }}</p>
                                     </div>
                                     <ul class="meta-info">
                                         <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ $item->created_at->format('M d, Y') }}</a></li>
-                                        <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>21 Comments</a></li>
+                                        <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{ $item->comment()->count() }} Comments</a></li>
                                     </ul>
                                 </div>    
                             </div>
@@ -94,8 +90,8 @@
                 <div class="sidebar-wrapper">
                     <!--Start single sidebar-->
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
-                        <form class="search-form" action="#">
-							<input placeholder="Search..." type="text">
+                        <form  class="search-form" action="{{ route('search') }}">
+							<input name="news" placeholder="{{ __('lang.Search') }}..." type="text">
 							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</form>
                     </div>
@@ -103,11 +99,11 @@
                     <!--Start single sidebar-->
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                         <div class="sec-title">
-                            <h3>Categories</h3>
+                            <h3>{{ __('lang.Categories') }}</h3>
                         </div>
                         <ul class="categories clearfix">
                             @foreach ($news_categories as $item)
-                            <li><a href="#">{{ $item->translate(App::getLocale())->title }}<span>(6)</span></a></li>
+                            <li><a href="#">{{ $item->translate(App::getLocale())->title }}<span>({{ $item->news()->count() }})</span></a></li>
                             @endforeach
                            
                           
@@ -117,12 +113,15 @@
                     <!--Start single sidebar--> 
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                         <div class="sec-title">
-                            <h3>Popular Posts</h3>
+                            <h3>  <h3>{{ __('lang.Popular Posts') }}</h3></h3>
                         </div>
                         <ul class="popular-post">
+                            @foreach ($last_news as $item)
+                                
+                          
                             <li>
                                 <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-1.jpg" alt="Awesome Image">
+                                    <img src="{{ asset($item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
@@ -132,42 +131,12 @@
                                     </div>
                                 </div>
                                 <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">How to handle your kids’<br> from mystery ailments</h5></a>
-                                    <h6 class="post-date">June 21, 2017</h6>
+                                    <a href="#"><h5 class="post-title">{{ $item->translate(App::getLocale())->title }}</h5></a>
+                                    <h6 class="post-date"> {{ $item->created_at->format('M d, Y') }}</h6>
                                 </div>
                             </li>
-                            <li>
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-2.jpg" alt="Awesome Image">
-                                    <div class="overlay-style-one">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">Lung cancer survival rate in <br>England improves</h5></a>
-                                    <h6 class="post-date">February 14, 2017</h6>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-3.jpg" alt="Awesome Image">
-                                    <div class="overlay-style-one">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">Negative statin stories add <br>to heart health risk</h5></a>
-                                    <h6 class="post-date">January 17, 2017</h6>
-                                </div>
-                            </li>
+
+                            @endforeach
                            
                            
                         </ul>

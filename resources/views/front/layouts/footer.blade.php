@@ -1,4 +1,4 @@
- ?? ''<!--Start footer area-->  
+<!--Start footer area-->  
 <footer class="footer-area">
     <div class="container">
         <div class="row">
@@ -6,13 +6,13 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget pd-bottom50">
                     <div class="title">
-                        <h3>About Hospitals</h3>
+                        <h3>{{ __('lang.About Hospitals') }}</h3>
                         <span class="border"></span>
                     </div>
                     <div class="our-info">
-                        <p>The relentless service of Hospitals in the past 25 years taken health care to the most modern levels in the region catering to urban & rural.</p>
-                        <p class="mar-top">A Health Care Provider of Western Approach, Hospitals is the most trusted multispecialty hospital.</p>
-                        <a href="#">Know More<i class="fa fa-caret-right" aria-hidden="true"></i></a>
+                        <p>{{ __('lang.footer_text') }}</p>
+                        
+                       
                     </div>
                 </div>
             </div>
@@ -21,17 +21,17 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget pd-bottom50">
                     <div class="title">
-                        <h3>Usefull Links</h3>
+                        <h3>{{ __('lang.Usefull Links') }}</h3>
                         <span class="border"></span>
                     </div>
                     <ul class="usefull-links fl-lft">
                        
-                        <li><a href="{{route('home')}}">Home</a></li>
-                        <li><a href="{{route('about')}}">About Us</a></li>
-                        <li><a href="{{route('image.gallery')}}">Image Gallery</a></li>
-                        <li><a href="{{route('video.gallery')}}">Video Gallery</a></li>
-                        <li><a href="{{route('elaqe')}}">Contact</a></li>
-                        <li><a href="#">Services</a></li>
+                        <li><a href="{{route('home')}}">{{ __('lang.Home') }}</a></li>
+                        <li><a href="{{route('about')}}">{{ __('lang.About Us') }}</a></li>
+                        <li><a href="{{route('image.gallery')}}">{{ __('lang.Image gallery') }}</a></li>
+                        <li><a href="{{route('video.gallery')}}">{{ __('lang.Video Gallery') }}</a></li>
+                        <li><a href="{{route('elaqe')}}">{{ __('lang.Contact Us') }}</a></li>
+                        <li><a href="#">{{ __('lang.Services') }}</a></li>
                       {{--   <li><a href="#">Doctors</a></li> --}}
                     </ul>
                     <ul class="usefull-links">
@@ -48,7 +48,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget mar-bottom">
                     <div class="title">
-                        <h3>Contact Details</h3>
+                        <h3>{{ __('lang.Contact Details') }}</h3>
                         <span class="border"></span>
                     </div>
                     <ul class="footer-contact-info">
@@ -81,7 +81,7 @@
                                 <span class="flaticon-clock"></span>
                             </div>
                             <div class="text-holder">
-                                <h5>Mon-Satday: 9am to 18pm</h5>
+                                <h5>{{ __('lang.Mon - Satday') }}: {{ __('lang.09.00am to 18.00pm') }}</h5>
                             </div>
                         </li>
                     </ul>
@@ -92,26 +92,24 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-footer-widget clearfix">
                     <div class="title">
-                        <h3>Make an Appointment</h3>
+                        <h3>{{ __('lang.Make an Appointment') }}</h3>
                         <span class="border"></span>
                     </div>
                     <form class="appointment-form" action="#">
                         <div class="input-box">
-                            <input type="text" name="form_name" value="" placeholder="Your Name" required="">
+                            <input type="text" name="form_name" value="" placeholder="{{ __('lang.Your Full Name') }}" required="">
                             <div class="icon-box">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="input-box">
-                            <input type="email" name="form_email" value="" placeholder="Your Email" required="">
+                            <input type="email" name="form_email" value="" placeholder="{{ __('lang.Your Phone') }}" required="">
                             <div class="icon-box">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                             </div>
                         </div>
-                        <div class="input-box">
-                            <textarea name="form_message" placeholder="Your Message.." required="" aria-required="true"></textarea>
-                        </div>
-                        <button type="submit">submit</button>
+                     
+                        <button type="submit">{{ __('lang.submit') }}</button>
                     </form>
                 </div>
             </div>
@@ -127,7 +125,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="copyright-text">
-                    <p>Copyrights © 2017 All Rights Reserved, Powered by <a href="#">Hospitals.</a></p> 
+                    <p>{{ __('lang.Copyrights © 2017 All Rights Reserved, Powered by') }} </p> 
                 </div>
             </div>
             <div class="col-md-4">

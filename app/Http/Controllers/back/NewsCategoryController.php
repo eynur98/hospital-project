@@ -32,6 +32,8 @@ class NewsCategoryController extends Controller
     public function store(NewsCategoryRequest $request)
     {
 
+        try{
+
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -43,7 +45,17 @@ class NewsCategoryController extends Controller
             $requests['status']='0';
         }
         NewsCategory::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -68,6 +80,7 @@ class NewsCategoryController extends Controller
      */
     public function update(NewsCategoryRequest $request, $id)
     {
+        try{
         $news_category = NewsCategory::find($id);
      
           $requests=$request->all();
@@ -81,7 +94,17 @@ class NewsCategoryController extends Controller
             $requests['status']='0';
         }
         $news_category->update($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
         
     }
 
@@ -94,6 +117,6 @@ class NewsCategoryController extends Controller
     public function destroy($id)
     {
         NewsCategory::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

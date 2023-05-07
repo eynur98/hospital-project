@@ -48,47 +48,20 @@
                 <div class="inner-content">
                     <div class="title-box text-center">
                         <span class="flaticon-calendar"></span>
-                        <h2>Make an Appointment</h2>    
+                        <h2>{{ __('lang.Make an Appointment	') }}</h2>    
                     </div>
                     <div class="form-holder clearfix">
-                        <form id="appointment" class="clearfix" name="appointment-form" action="http://st.ourhtmldemo.com/new/Hospitals/inc/sendmail.php" method="post">
+                        <form id="appointment" class="clearfix" name="appointment-form" action="{{ route('appointment.add') }}" method="post">
+                            @csrf
                             <div class="single-box mar-right-30">    
                                 <div class="input-box">
-                                    <input type="text" name="form_name" value="" placeholder="Your Name" required="">
+                                    <input type="text" name="full_name" value="" placeholder="{{ __('lang.Your Full Name') }}" required="">
                                 </div>
                                 <div class="input-box">
-                                    <select class="selectmenu">
-                                        <option selected="selected">Select Doctor</option>
-                                        <option>Marc Parcival</option>
-                                        <option>Alen Bailey</option>
-                                        <option>Basil Andrew</option>
-                                        <option>Giles Franklin</option>
-                                        <option>Edgar Denzil</option>
-                                        <option>Garfield Feris</option>
-                                    </select>  
+                                    <input type="text" name="phone" value="" placeholder="{{ __('lang.Your Phone') }}" required="">
                                 </div>
                             </div>
-                            <div class="single-box">    
-                                <div class="input-box">  
-                                    <select class="selectmenu">
-                                        <option selected="selected">Select Department</option>
-                                        <option>Cardiology</option>
-                                        <option>Pulmonology</option>
-                                        <option>Gynecology</option>
-                                        <option>Neurology</option>
-                                        <option>Urology</option>
-                                        <option>Gastrology</option>
-                                        <option>Pediatrician</option>
-                                        <option>Laboratory</option>
-                                    </select>
-                                </div>
-                                <div class="input-box">
-                                    <input type="text" name="date" placeholder="Select Date" id="datepicker">
-                                    <div class="icon-box">
-                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                    </div>
-                                </div>       
-                            </div>
+                        
                             <button class="thm-btn bgclr-1" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>    
                         </form>      
                     </div> 
@@ -104,58 +77,25 @@
 <section class="medical-departments-area">
     <div class="container">
         <div class="sec-title">
-            <h1>Plastik cerrahiye</h1>
+            <h1>{{ __('lang.Plastik cerrahiye') }}</h1>
             <span class="border"></span>
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="medical-departments-carousel">
+                   
+                
+                   
                     <!--Start single item-->
                     <div class="single-item text-center">
                         <div class="iocn-holder">
-                            <span class="flaticon-cardiology"></span>    
+                            <span class="flaticon-cosmetic"></span>    
                         </div>
                         <div class="text-holder">
-                            <h3>Cardiology</h3>
-                            <p>How all this mistaken al idea of denouncing pleasure praisings pain was complete.</p>
-                        </div>
-                        <a class="readmore" href="#">Read More</a>
-                    </div>
-                    <!--End single item-->
-                    <!--Start single item-->
-                    <div class="single-item text-center">
-                        <div class="iocn-holder">
-                            <span class="flaticon-lungs"></span>    
-                        </div>
-                        <div class="text-holder">
-                            <h3>Pulmonology</h3>
+                            <h3>Plastic </h3>
                             <p> Who chooses to enjoy a pleasure that has annoying consquences, or one who avoids a pain.</p>
                         </div>
-                        <a class="readmore" href="#">Read More</a>
-                    </div>
-                    <!--End single item-->
-                    <!--Start single item-->
-                    <div class="single-item text-center">
-                        <div class="iocn-holder">
-                            <span class="flaticon-vagina"></span>    
-                        </div>
-                        <div class="text-holder">
-                            <h3>Gynecology</h3>
-                            <p> Who chooses to enjoy a pleasure that has annoying consquences, or one who avoids a pain.</p>
-                        </div>
-                        <a class="readmore" href="#">Read More</a>
-                    </div>
-                    <!--End single item-->
-                    <!--Start single item-->
-                    <div class="single-item text-center">
-                        <div class="iocn-holder">
-                            <span class="flaticon-neurology"></span>    
-                        </div>
-                        <div class="text-holder">
-                            <h3>Neurology</h3>
-                            <p> Who chooses to enjoy a pleasure that has annoying consquences, or one who avoids a pain.</p>
-                        </div>
-                        <a class="readmore" href="#">Read More</a>
+                        <a class="readmore" href="#">{{ __('lang.Read More') }}</a>
                     </div>
                     <!--End single item-->
                 </div>
@@ -172,9 +112,9 @@
             <div class="col-md-4">
                 <div class="img-holder">
                     <img src="{{asset('template') }}/images/services/doctor.jpg" alt="Awesome Image">
-                    <div class="overlay-content">
+                    {{-- <div class="overlay-content">
                         <p>As a tertiary referral ICU to provide state of the art care with the help of very good professionals and infrastructure.</p>  
-                    </div>    
+                    </div>     --}}
                 </div>
             </div>
             <div class="col-md-8">
@@ -186,7 +126,7 @@
                             <div class="tab-pane" id="opthalmology">
                                 <div class="inner-content">
                                     <div class="sec-title">
-                                        <h1>Our Best Services</h1>
+                                        <h1>{{ __('lang.Xidmetler') }}</h1>
                                         <span class="border"></span>
                                     </div>
                                     <div class="row">
@@ -299,7 +239,7 @@
 <section class="team-area">
     <div class="container">
         <div class="sec-title">
-            <h1>Bizim hekimler</h1>
+            <h1>{{ __('lang.Bizim hekimler') }}</h1>
             <span class="border"></span>
         </div>
         <div class="row">
@@ -349,8 +289,8 @@
 <section class="fact-counter-area" style="background-image:url({{asset('template') }}/images/resources/fact-counter-bg.jpg);">
     <div class="container">
         <div class="sec-title text-center">
-            <h1>Keep your headup & be patient</h1>
-            <p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the<br> system and expound the actual teachings of the great.</p>
+            <h1>{{ __('lang.Keep your headup & be patient') }}</h1>
+            <p>{{ __('lang.How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the') }}</p>
         </div>
         <div class="row">
             <!--Start single item-->
@@ -382,7 +322,7 @@
 <section class="testimonial-area">
     <div class="container">
         <div class="sec-title mar0auto text-center">
-            <h1>Reyler</h1>
+            <h1>{{ __('lang.Comments') }}</h1>
             <span class="border"></span>
         </div>
         <div class="row">
@@ -418,7 +358,7 @@
 <section class="latest-blog-area">
     <div class="container">
         <div class="sec-title">
-            <h1>Latest From Blog</h1>
+            <h1>{{ __('lang.blog') }}</h1>
             <span class="border"></span>
         </div>
         <div class="row">
@@ -637,43 +577,21 @@
             <div class="col-md-4">
                 <div class="appointment">
                     <div class="sec-title">
-                        <h1>Make an Appointment</h1>
+                        <h1>{{ __('lang.Make an Appointment') }}</h1>
                         <span class="border"></span>
                     </div>
                     <form id="appointment-form" name="appointment-form" action="http://st.ourhtmldemo.com/new/Hospitals/inc/sendmail.php" method="post">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="input-box">
-                                    <input type="text" name="form_name" value="" placeholder="Your Name" required="">
+                                    <input type="text" name="form_name" value="" placeholder="{{ __('lang.Your Full Name') }}" required="">
                                 </div>
                                 <div class="input-box">
-                                    <input type="email" name="form_email" value="" placeholder="Your Email" required="">
+                                    <input type="email" name="form_email" value="" placeholder="{{ __('lang.Your Phone') }}" required="">
                                 </div>
-                                <div class="input-box">
-                                    <select class="selectmenu">
-                                        <option selected="selected">Select Department</option>
-                                        <option>Cardiology</option>
-                                        <option>Pulmonology</option>
-                                        <option>Gynecology</option>
-                                        <option>Neurology</option>
-                                        <option>Urology</option>
-                                        <option>Gastrology</option>
-                                        <option>Pediatrician</option>
-                                        <option>Laboratory</option>
-                                    </select>
-                                </div>
-                                <div class="input-box">   
-                                    <select class="selectmenu">
-                                        <option selected="selected">Select Doctor</option>
-                                        <option>Balance Body Mind</option>
-                                        <option>Physical Activity</option>
-                                        <option>Support & Motivation</option>
-                                        <option>Exercise Program</option>
-                                        <option>Healthy Daily Life</option>
-                                        <option>First Hand Advice</option>
-                                    </select>
-                                </div>
-                                <button class="thm-btn bgclr-1" type="submit">submit</button>        
+                               
+                               
+                                <button class="thm-btn bgclr-1" type="submit">{{ __('lang.submit') }}</button>        
                             </div>
                         </div>
                     </form>        
@@ -691,11 +609,11 @@
             <div class="col-md-12">
                 <div class="text-holder">
                     <div class="sec-title">
-                        <h1>You’re in Good Hands</h1>
+                        <h1>{{ __('lang.You’re in Good Hands') }}</h1>
                     </div>
                     <div class="text">
-                        <p>We believe in bringing the most modern techniques and delivering extraordinary care to ailing population with the highest levels of ethics and standards. We are committed to continuing medical education, through our fellowship and DNB programs.</p>
-                        <p>We organize atleast one conference a month and support research foundation for continued advancement.</p>
+                        <p>{{ __('lang.home text') }}</p>
+                     
                     </div>
                 </div>
             </div>

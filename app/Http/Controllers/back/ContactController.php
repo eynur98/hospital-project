@@ -15,9 +15,20 @@ class ContactController extends Controller
     }
 
     public function update (ContactRequest $request){
+
+        try{
         $about = Contact::first();
         $requests=$request->all();
       $about->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 }

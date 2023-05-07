@@ -6,7 +6,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>News Single Post</h1>
+	                <h1>{{ $news->translate(App::getLocale())->title }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -17,16 +17,12 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">News Single Post</li>
+                            <li class="active">{{ $news->translate(App::getLocale())->title }}</li>
                         </ul>
                     </div>
-                    <div class="right pull-right">
-                        <a href="#">
-                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
-                        </a>   
-                    </div>    
+                 
                 </div>
             </div>
         </div>
@@ -52,7 +48,7 @@
                             <!--End bottom content box-->
                             <ul class="meta-info">
                                 <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ $news->created_at->format('M d, Y') }}</a></li>
-                                <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18 Comments</a></li>
+                                <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>{{ $news->comment()->count() }} {{ __('lang.Comments') }}</a></li>
                                 <li><a href="#"><i class="fa fa-folder-open" aria-hidden="true"></i>{{ $news->news_category->translate(App::getLocale())->title }}</a></li>
                                
                             </ul>
@@ -87,45 +83,33 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="sec-title pdb-30">
-                                    <h3>Read Comments</h3>
+                                    <h3> {{ __('lang.Comments') }}</h3>
                                     <span class="border"></span>
                                 </div>
+
+
+                                @foreach ($news->comment as $item)
+                                      
+                                 
                                 <!--Start single comment box-->
                                 <div class="single-comment-box">
-                                    <div class="img-holder">
-                                        <img src="{{ asset('template') }}/images/blog/comment-1.jpg" alt="Awesome Image">
-                                    </div>
+                                   
                                     <div class="text-holder">
                                         <div class="top">
                                             <div class="date pull-left">
-                                                <h5>Steven Rich – Sep 17, 2016:</h5>
+                                                <h5>{{ $item->name }} {{ $item->surname }}– {{ $item->created_at->format('M d, Y') }}:</h5>
                                             </div>
                                             
                                         </div>
                                         <div class="text">
-                                            <p>How all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings.</p>
+                                            <p>{{ $item->text }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <!--End single comment box-->
-                                <!--Start single comment box-->
-                                <div class="single-comment-box">
-                                    <div class="img-holder">
-                                        <img src="{{ asset('template') }}/images/blog/comment-2.jpg" alt="Awesome Image">
-                                    </div>
-                                    <div class="text-holder">
-                                        <div class="top">
-                                            <div class="date pull-left">
-                                                <h5>William Cobus – Aug 21, 2016:</h5>
-                                            </div>
-                                          
-                                        </div>
-                                        <div class="text">
-                                            <p>there anyone who loves or pursues or desires to obtain pain itself, because it is pain, because occasionally circumstances occur some great pleasure.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--End single comment box-->
+                                @endforeach
+                                
+                            
                             </div>
                         </div>
                     </div>
@@ -137,35 +121,36 @@
                             <span class="border"></span>
                         </div>
                      
-                        <form  name="comment-form"action="{{ route('comment') }}" method="post">
+                        <form  id="add-comment-form" name="comment-form"action="{{ route('comment') }}" method="post">
                             @csrf
+                            <input type="hidden" name="news_id" value="{{ $news->id }}">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="field-label">First Name*</div>
-                                            <input type="text" name="name" placeholder="" required="">
+                                            <div class="field-label">{{ __('lang.First Name') }}*</div>
+                                            <input type="text" name="name" placeholder="{{ __('lang.First Name') }}" required="">
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="field-label">Last Name*</div>
-                                            <input type="text" name="surname" placeholder="" required="">
+                                            <div class="field-label">{{ __('lang.Last Name') }}*</div>
+                                            <input type="text" name="surname" placeholder="{{ __('lang.Last Name') }}" required="">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="field-label">Email*</div>
-                                            <input type="email" name="email" placeholder="" required="">
+                                            <div class="field-label">{{ __('lang.Email') }}*</div>
+                                            <input type="email" name="email" placeholder="{{ __('lang.Email') }}" required="">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <div class="field-label">Your Comments</div>
+                                            <div class="field-label">{{ __('lang.Your Comments') }}</div>
                                             <textarea name="text"></textarea>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <button class="thm-btn bgclr-1" type="submit">Submit Now</button>
+                                            <button class="thm-btn bgclr-1" type="submit">{{ __('lang.submit') }} </button>
                                         </div>
                                     </div>
                                    
@@ -182,7 +167,7 @@
                     <!--Start single sidebar-->
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                         <form class="search-form" action="#">
-							<input placeholder="Search..." type="text">
+							<input placeholder="{{ __('lang.Search') }}..." type="text">
 							<button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</form>
                     </div>
@@ -190,7 +175,7 @@
                     <!--Start single sidebar-->
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                         <div class="sec-title">
-                            <h3>Categories</h3>
+                            <h3>{{ __('lang.Categories') }}</h3>
                         </div>
                         <ul class="categories clearfix">
                             @foreach ($news_categories as $item)
@@ -204,12 +189,15 @@
                     <!--Start single sidebar--> 
                     <div class="single-sidebar wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                         <div class="sec-title">
-                            <h3>Popular Posts</h3>
+                            <h3>{{ __('lang.Popular Posts') }}</h3>
                         </div>
                         <ul class="popular-post">
+                            @foreach ($last_news as $item)
+                                
+                          
                             <li>
                                 <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-1.jpg" alt="Awesome Image">
+                                    <img src="{{ asset($item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
@@ -219,42 +207,12 @@
                                     </div>
                                 </div>
                                 <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">How to handle your kids’<br> from mystery ailments</h5></a>
-                                    <h6 class="post-date">June 21, 2017</h6>
+                                    <a href="#"><h5 class="post-title">{{ $item->translate(App::getLocale())->title }}</h5></a>
+                                    <h6 class="post-date"> {{ $item->created_at->format('M d, Y') }}</h6>
                                 </div>
                             </li>
-                            <li>
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-2.jpg" alt="Awesome Image">
-                                    <div class="overlay-style-one">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">Lung cancer survival rate in <br>England improves</h5></a>
-                                    <h6 class="post-date">February 14, 2017</h6>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="img-holder">
-                                    <img src="{{ asset('template') }}/images/sidebar/popular-post-3.jpg" alt="Awesome Image">
-                                    <div class="overlay-style-one">
-                                        <div class="box">
-                                            <div class="content">
-                                                <a href="#"><i class="fa fa-link" aria-hidden="true"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">Negative statin stories add <br>to heart health risk</h5></a>
-                                    <h6 class="post-date">January 17, 2017</h6>
-                                </div>
-                            </li>
+
+                            @endforeach
                            
                            
                         </ul>

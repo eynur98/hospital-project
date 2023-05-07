@@ -6,7 +6,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>Contact Us</h1>
+	                <h1>{{ __('lang.Contact Us') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -17,16 +17,12 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">Contact Us</li>
+                            <li class="active">{{ __('lang.Contact Us') }}</li>
                         </ul>
                     </div>
-                    <div class="right pull-right">
-                        <a href="#">
-                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
-                        </a>   
-                    </div>    
+                     
                 </div>
             </div>
         </div>
@@ -38,47 +34,40 @@
 <section class="contact-form-area">
     <div class="container">
         <div class="sec-title">
-            <h1>Get Touch With Us</h1>
+            <h1>{{ __('lang.Get Touch With Us') }}</h1>
             <span class="border"></span>
-            <div class="select-box pull-right">
-                <select class="text-capitalize selectpicker form-control required" name="form_subject" data-style="g-select" data-width="100%">
-                    <option>Newyork Campus</option>
-                    <option>Canada Campus</option>
-                    <option>UK Campus</option>
-                    <option>USA Campus</option>
-                </select>
-            </div>
+            
         </div>
         <div class="row">
             <div class="col-lg-8 col-md-7">
                 <div class="contact-form">
                     <form id="contact-form" name="contact_form" class="default-form" action="http://st.ourhtmldemo.com/new/Hospitals/inc/sendmail.php" method="post">
-                        <h2>Make an Appointment</h2>
+                        <h2>{{ __('lang.Make an Appointment') }}</h2>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_name" value="" placeholder="Your Name*" required="">
+                                <input type="text" name="form_name" value="" placeholder="{{ __('lang.Your Full Name') }}*" required="">
                             </div>
                             <div class="col-md-6">
-                                <input type="email" name="form_email" value="" placeholder="Your Mail*" required="">
+                                <input type="email" name="form_email" value="" placeholder="{{ __('lang.Email') }}*" required="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="form_phone" value="" placeholder="Phone">
+                                <input type="text" name="form_phone" value="" placeholder="{{ __('lang.Your Phone') }}">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="form_subject" value="" placeholder="Subject">
+                                <input type="text" name="form_subject" value="" placeholder="{{ __('lang.Subject') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea name="form_message" placeholder="Your Message.." required=""></textarea>
+                                <textarea name="form_message" placeholder="{{__('lang.Your Message')}}" required=""></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <input id="form_botcheck" name="form_botcheck" class="form-control" type="hidden" value="">
-                                <button class="thm-btn bgclr-1" type="submit" data-loading-text="Please wait...">send message</button>
+                                <button class="thm-btn bgclr-1" type="submit" data-loading-text="Please wait...">{{ __('lang.submit') }}</button>
                             </div>
                         </div>
                     </form>  
@@ -87,8 +76,8 @@
             <div class="col-lg-4 col-md-5">
                 <div class="quick-contact">
                     <div class="title">
-                        <h2>Quick Contact</h2>
-                        <p>If you have any questions simply use the following contact details.</p>
+                        <h2>{{ __('lang.Quick Contact') }}</h2>
+                        <p>{{ __('lang.contact text') }}</p>
                     </div>
                     <ul class="contact-info">
                         <li>
@@ -96,7 +85,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Address:</span> {!! $contact->translate(App::getLocale())->address !!}</h5>
+                                <h5><span>{{ __('lang.Address') }}:</span> {!! $contact->translate(App::getLocale())->address !!}</h5>
                             </div>
                         </li>
                         <li>
@@ -104,7 +93,7 @@
                                 <span class="flaticon-technology"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Phone:</span>{{ $contact->phone }}</h5>
+                                <h5><span>{{ __('lang.Phone') }}:</span>{{ $contact->phone }}</h5>
                             </div>
                         </li>
                         <li>
@@ -112,7 +101,7 @@
                                 <span class="flaticon-interface"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>Email:</span> {{ $contact->email }}</h5>
+                                <h5><span>{{ __('lang.Email') }}:</span> {{ $contact->email }}</h5>
                             </div>
                         </li>
                     </ul>

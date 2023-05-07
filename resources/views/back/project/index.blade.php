@@ -20,7 +20,7 @@
                         <div class="card-header align-items-center d-flex">
                             <h4 class="card-title mb-0 flex-grow-1">Həkimlər</h4>
                             <button type="button"
-                                onclick="unSet()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
+                                onclick="unSet(), this.form.reset()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
                         </div>
                         <div class="card-body">
                             <table class="table table-nowrap">
@@ -99,8 +99,13 @@
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
                                             <input type="text" class="form-control "  placeholder="Ad Soyad {{$item->code}}" name="title:{{$item->code}}">  
-                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
-                                       
+                                            @error("title:".$item->code)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
+                                          @error("description:".$item->code)
+                                          <div class="text-danger">{{ $message }}</div>
+                                      @enderror
                                         </div>
                                          @endforeach
                                         </div>
@@ -119,7 +124,25 @@
 
                                             <img id="update_photo"/>
                                                 <input class="form-control" name="image" type="file" id="foto">
+                                                @error("image")
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
 
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-lg-3">
+                                            <label for="foto" class="form-label">Sertifikatlar</label>
+                                        </div>
+                                        <div class="col-lg-9 ">
+
+                                            <div class="parentCertificates d-flex" style=" flex-wrap: wrap;justify-content:space-between">
+                                               
+                                            </div>
+                                        
+                                            <img id="update_photo"/>
+                                            <input class="form-control" name="images[]" multiple type="file" id="foto">
                                         </div>
                                     </div>
 
@@ -137,6 +160,9 @@
 
                                              
                                             </select>
+                                            @error("doctor_positon_id")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -146,6 +172,9 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                            @error("slug")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -156,6 +185,7 @@
                                             <input type="text" class="form-control" id="titleInput1" placeholder="Email" name="email">
                                         </div>
                                     </div> 
+                                   
                                     <div class="row mb-3">
                                         <div class="col-lg-3">
                                             <label for="titleInput" class="form-label">Tel</label>
@@ -203,6 +233,8 @@
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
         function unSet(){
+            $('.parentCertificates').html('')
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)
@@ -215,9 +247,11 @@
             $('#foto').val('')
         }
         ;
+
+
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/doctor/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8001/doctor/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Həkimi yenilə')
            $.ajax({
@@ -226,14 +260,17 @@
                 // serializes the form's elements.
                success: function(data)
                {
+                console.log(data,'data');
                    $('#titleInput').val(data.title)
                    $('#titleInput').val(data.slug)
                    $('#titleInput1').val(data.email)
                    $('#titleInput2').val(data.phone)
                    $('#update_photo').css({'width':'80px','height':'80px'})
                    $('#update_photo').attr('src','/'+data.image)
-                 
-                  
+
+                  data.certificates.forEach(element => {
+                    $('.parentCertificates').append(`<div id="itemCert${element.id}" onclick="this.remove()" ><img src="${element.image}"  width="70"> <input type="hidden" value="${element.image}" name="images[]"> </div>`)
+                  });
            
                    $('.titlesParent').html('')
                    $('.nav-link').removeClass( 'active');
@@ -246,7 +283,7 @@
           
                    data.translations.forEach(item => {
                   let custom_input=  $("<div/>").addClass('title__input').attr('id','titleInput'+item.locale)
-                   $('.titlesParent').append(custom_input.append($("<input/>").addClass('form-control ').attr({ "name": 'title:'+item.locale,'value':item.title})))
+                   $('.titlesParent').append(custom_input.append($("<input type='text'/>").addClass('form-control ').attr({ "name": 'title:'+item.locale,'value':item.title})))
                    $('.titlesParent').append(custom_input.append($('<textarea/>').addClass('form-control mt-3').attr({"name":'description:'+item.locale,"cols":"30", "rows":"10"}).val(item.description)))
                 });
           }

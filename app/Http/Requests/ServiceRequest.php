@@ -5,6 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use App\Models\Language;
+use Illuminate\Contracts\Validation\Validator;
+use Yoeunes\Toastr\Facades\Toastr;
+use Yoeunes\Toastr\Toastr as ToastrToastr;
+
 class ServiceRequest extends FormRequest
 {
     /**
@@ -49,9 +53,32 @@ class ServiceRequest extends FormRequest
               
 
             ];
-  
-    
+           
+            
             return Arr::collapse($return);
         
     }
+
+    public function messages()
+{
+    Toastr::error('Error', 'failed');
+    $messages = [
+         'title:ar'  => 'Acreage field must be greater then 0.'
+    ];
+
+    return $messages;
+}
+
+
+    protected function formatErrors(Validator $validator)
+    {
+      
+       
+
+        return $validator->errors()->all();
+    }
+
+ 
+
+
 }

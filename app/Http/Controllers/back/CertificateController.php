@@ -39,6 +39,8 @@ class CertificateController extends Controller
      */
     public function store(CertificateRequest $request)
     {
+
+        try{
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -51,7 +53,17 @@ class CertificateController extends Controller
             $requests['status']='0';
         }
         Certificate::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -85,6 +97,8 @@ class CertificateController extends Controller
      */
     public function update(CertificateRequest $request, $id)
     {
+
+        try{
         $certificate = Certificate::find($id);
      
         $requests=$request->all();
@@ -101,7 +115,17 @@ class CertificateController extends Controller
     
    
       $certificate->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -113,6 +137,6 @@ class CertificateController extends Controller
     public function destroy($id)
     {
         Certificate::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

@@ -8,7 +8,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Services\FIle_download;
 use App\Models\Language;
-
+use Yoeunes\Toastr\Facades\Toastr;
 
 class ServiceController extends Controller
 {
@@ -19,6 +19,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
+      
         return view('back.service.index',['service'=>Service::paginate(10), 'languages'=>Language::where('status', 1)->get()]);
     }
 
@@ -30,8 +31,12 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
+     
+        $validated = $request->validated();
+       
+        try {
         $requests=$request->all();
        
         $photo = new FIle_download();
@@ -44,14 +49,18 @@ class ServiceController extends Controller
         }
       
        Service::create($requests);
-        if ($code=200) {
-           return redirect()->back();
-        }else{
+     
+           return redirect()->back()->with('success','');
+    }
+    
+           catch (\Exception $e) {
             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
 
             if ($validator->fails()) {
+                toastr()->error('Oops! Something went wrong!');
                return response()->json($validator->errors(), 422);
             }
+        
         }
      
       
@@ -80,6 +89,8 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, $id)
     {
+
+        try{
         $service = Service::find($id);
      
           $requests=$request->all();
@@ -96,17 +107,26 @@ class ServiceController extends Controller
       
      
         $service->update($requests);
-        if ($code=200) {
-            return redirect()->back();
-         }else{
-             $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
- 
-             if ($validator->fails()) {
-                return response()->json($validator->errors(), 422);
-             }
-         }
+       
+            return redirect()->back()->with('success','');
+       
+        }
+        catch (\Exception $e) {
+         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
 
-        return redirect()->back();
+         if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+         }
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+     
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -118,6 +138,6 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         Service::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

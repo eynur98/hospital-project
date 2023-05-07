@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -12,6 +13,14 @@ class Handler extends ExceptionHandler
      *
      * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
      */
+
+     protected function invalidJson($request, ValidationException $exception)
+     {
+         return response()->json([
+             'message' => 'Validation failed',
+             'errors' => $exception->errors(),
+         ], $exception->status);
+     }
     protected $levels = [
         //
     ];
@@ -47,4 +56,7 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    
+    
 }

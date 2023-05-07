@@ -75,7 +75,10 @@
                                             <label for="titleInput" class="form-label">Youtube video id</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" id="titleInput" placeholder="title" name="video">
+                                            <input type="text" class="form-control" id="titleInput" placeholder="video id" name="video">
+                                            @error("video")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     
@@ -104,7 +107,9 @@
     <script>
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)

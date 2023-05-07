@@ -6,7 +6,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>Gallery</h1>
+	                <h1>{{ __('lang.Image gallery') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -17,16 +17,12 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">Gallery</li>
+                            <li class="active">{{ __('lang.Image gallery') }}</li>
                         </ul>
                     </div>
-                    <div class="right pull-right">
-                        <a href="#">
-                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
-                        </a>   
-                    </div>    
+                   
                 </div>
             </div>
         </div>

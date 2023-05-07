@@ -37,9 +37,20 @@ class TercumeController extends Controller
      */
     public function store(Request $request)
     {
+
+        try{
         $requests=$request->all();
         Tercume::create($requests);
-        return redirect()->back();
+        return redirect()->back()->with('success','');
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -73,12 +84,23 @@ class TercumeController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        try{
         $support = Tercume::find($id);
      
         $requests=$request->all();
     
       $support->update($requests);
-      return redirect()->back();
+      return redirect()->back()->with('success','');
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 
     /**
@@ -90,6 +112,6 @@ class TercumeController extends Controller
     public function destroy($id)
     {
         Tercume::where('id',$id)->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success','');
     }
 }

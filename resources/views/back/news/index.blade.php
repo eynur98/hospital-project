@@ -18,7 +18,7 @@
 
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
-                            <h4 class="card-title mb-0 flex-grow-1">Partnyorlar və Referanslar</h4>
+                            <h4 class="card-title mb-0 flex-grow-1">Xəbər</h4>
                             <button type="button"
                                 onclick="unSet()"   class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#partners_modal">Əlavə et</button>
                         </div>
@@ -54,7 +54,7 @@
                                                 <button type="submit" class="from_edit btn btn-ghost-danger waves-effect waves-light shadow-none"><i class="ri-delete-bin-line"></i></button>
 
                                             </form>
-
+                                            <a href="{{ route('news.comment',$partner->id) }}">Comments</a>
                                             </div>
                                         </td>
                                     </tr>
@@ -99,8 +99,13 @@
                                         <div id="titleInput{{$item->code}}" class="title__input">
                                         
                                             <input type="text" class="form-control "  placeholder="title {{$item->code}}" name="title:{{$item->code}}">  
-                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
-                                       
+                                            @error("title:".$item->code)
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
+                                          @error("description:".$item->code)
+                                          <div class="text-danger">{{ $message }}</div>
+                                      @enderror
                                         </div>
                                          @endforeach
                                         </div>
@@ -119,7 +124,9 @@
 
                                             <img id="update_photo"/>
                                                 <input class="form-control" name="image" type="file" id="foto">
-
+                                                @error("image")
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -137,6 +144,9 @@
 
                                              
                                             </select>
+                                            @error("news_category_id")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
 
@@ -146,6 +156,9 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                            @error("slug")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-check form-check-secondary mb-3">
@@ -186,7 +199,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)

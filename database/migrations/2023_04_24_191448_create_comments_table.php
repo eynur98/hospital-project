@@ -15,13 +15,20 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('news_id');
             $table->string('name')->nullable();
             $table->string('surname')->nullable();
             $table->string('email')->nullable();
             $table->text('text')->nullable();
             $table->enum('status',['1','0'])->default('0');
-          
             $table->timestamps();
+
+
+            $table->foreign('news_id')
+            ->references('id')
+            ->on('news')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
     }
 

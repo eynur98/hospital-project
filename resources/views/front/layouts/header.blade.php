@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
                 <div class="top-left">
-                    <p><span class="flaticon-phone"></span>24 hours emergency & ambulance Service: +321 789 01 2345</p> 
+                    <p><span class="flaticon-phone"></span>{{ __('lang.24 hours emergency & ambulance Service: +321 789 01 2345')}}</p> 
                 </div>
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
@@ -78,7 +78,7 @@
                                 <span class="flaticon-technology"></span>
                             </div>
                             <div class="text-holder">
-                                <h4>Call us now</h4>
+                                <h4>{{ __('lang.Call us now') }}</h4>
                                 <span>{{ $contact->phone ?? ''}}</span>    
                             </div>
                         </li>
@@ -96,8 +96,8 @@
                                 <span class="flaticon-agenda"></span>
                             </div>
                             <div class="text-holder">
-                                <h4>Mon - Satday</h4>
-                                <span>09.00am to 18.00pm</span>    
+                                <h4>{{ __('lang.Mon - Satday') }}</h4>
+                                <span>{{ __('lang.09.00am to 18.00pm') }}</span>    
                             </div>
                         </li>        
                     </ul>
@@ -119,9 +119,9 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="search-form pull-right">
-                    <form action="#">
+                    <form action="{{ route('search') }}">
                         <div class="search">
-                            <input type="search" name="search" value="" placeholder="Search">
+                            <input type="search" name="doctor" value="" placeholder="{{ __('lang.Search') }}">
                             <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
                     </form>
@@ -148,11 +148,11 @@
                     </div>
                     <div class="navbar-collapse collapse clearfix">
                         <ul class="navigation clearfix">
-                            <li class="current"><a href="{{ route('home') }}">Home</a></li>
-                            <li ><a href="{{ route('about') }}">About Us</a>
+                            <li class="current"><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
+                            <li ><a href="{{ route('about') }}">{{ __('lang.About Us') }}</a>
                              
                             </li>
-                            <li class="dropdown"><a href="#">Doctors</a>
+                            <li class="dropdown"><a href="#">{{ __('lang.Doctors') }}</a>
                                 <ul>
                                     @foreach ($doctor_positons as $item)
                                     <li><a href="{{route('doctors',$item->slug)}}">{{ $item->translate(App::getLocale())->title }}</a></li>
@@ -161,7 +161,7 @@
                                   
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#">Xidmətlər</a>
+                            <li class="dropdown"><a href="#">{{ __('lang.Xidmetler') }}</a>
                                 <ul>
                                     @foreach ($services as $item)
                                   
@@ -172,7 +172,7 @@
                                 </ul>
                             </li>
                             
-                            <li class="dropdown"><a href="#">News</a>
+                            <li class="dropdown"><a href="#">{{ __('lang.news') }}</a>
                                 <ul>
                                     @foreach ($news_categories as $item)
                                     <li><a href="{{ route('news',$item->slug) }}">{{ $item->translate(App::getLocale())->title }}</a></li>
@@ -181,14 +181,14 @@
                                     
                                 </ul>
                             </li>
-                            <li><a href="{{ route('blog') }}">Blog</a></li>
-                            <li class="dropdown"><a href="#">Galleries</a>
+                            <li><a href="{{ route('blog') }}">{{ __('lang.blog') }}</a></li>
+                            <li class="dropdown"><a href="#">{{ __('lang.Galleries') }}</a>
                                 <ul>
-                                    <li><a href="{{ route('image.gallery') }}">Image gallery</a></li>
-                                    <li><a href="{{ route('video.gallery') }}">Video Gallery</a></li>
+                                    <li><a href="{{ route('image.gallery') }}">{{ __('lang.Image gallery') }}</a></li>
+                                    <li><a href="{{ route('video.gallery') }}">{{ __('lang.Video Gallery') }}</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{ route('elaqe') }}">Contact Us</a></li>
+                            <li><a href="{{ route('elaqe') }}">{{ __('lang.Contact Us') }}</a></li>
                         </ul>
                     </div>
                 </nav>

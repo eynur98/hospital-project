@@ -114,7 +114,9 @@
 
                                             <img id="update_photo"/>
                                                 <input class="form-control" name="image" type="file" id="foto">
-
+                                                @error("image")
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -123,6 +125,9 @@
                                         </div>
                                         <div class="col-lg-9">
                                             <input type="text" class="form-control" id="titleInput" placeholder="Slug" name="slug">
+                                            @error("slug")
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
                                         </div>
                                     </div>
                                     <div class="form-check form-check-secondary mb-3">
@@ -163,7 +168,9 @@
         }
       const action =   $("#partner_form").attr('action')
       const title_form =  $('#partners_modalLabel').text()
-        function unSet(){
+      function unSet(){
+            
+            $('#partner_form').find("input, textarea").val("");
             $("#partner_form").attr('action',action)
             $("#hidden__").remove()
             $('#partners_modalLabel').text(title_form)

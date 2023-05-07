@@ -8,7 +8,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>Our Doctors</h1>
+	                <h1> {{ __('lang.Doctors') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -19,16 +19,12 @@
                 <div class="col-md-12">
                     <div class="left pull-left">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
+                            <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">Doctors</li>
+                            <li class="active">{{ __('lang.Doctors') }}</li>
                         </ul>
                     </div>
-                    <div class="right pull-right">
-                        <a href="#">
-                            <span><i class="fa fa-share-alt" aria-hidden="true"></i>Share</span> 
-                        </a>   
-                    </div>    
+                     
                 </div>
             </div>
         </div>
@@ -58,6 +54,7 @@
                         <div class="row">
                             @foreach ($item->doctors as $doctor)
                                     <!--Start single item-->
+                                    <a href="{{ route('doctor.detail',$doctor->slug) }}">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="single-team-member">
                                     <div class="img-holder">
@@ -86,11 +83,11 @@
                                     </div>
                                 </div>
                                 </div>
-                            </div>
+                                 </a>
                             <!--End single item-->
                             @endforeach
                         
-                       
+                         </div>
                         </div>
                     </div>
                     <!--End single tab pane-->

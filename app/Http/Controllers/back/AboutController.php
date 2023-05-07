@@ -16,6 +16,8 @@ class AboutController extends Controller
     }
 
     public function update (AboutRequest $request){
+
+        try{
          $about = About::first() ??[];
      
         $requests=$request->all();
@@ -26,6 +28,17 @@ class AboutController extends Controller
           $requests['image']=$checkedPhoto;
       }
       $about->update($requests);
-      return redirect()->back();
+    //  toastr()->success('sdd');
+      return redirect()->back()->with('success','');
+
+    }
+    catch (\Exception $e) {
+     $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $this->rules());
+
+     if ($validator->fails()) {
+        return response()->json($validator->errors(), 422);
+     }
+ 
+ }
     }
 }
