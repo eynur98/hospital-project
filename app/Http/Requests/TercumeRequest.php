@@ -5,7 +5,8 @@ namespace App\Http\Requests;
 use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
-
+use Yoeunes\Toastr\Facades\Toastr;
+use Illuminate\Contracts\Validation\Validator;
 class TercumeRequest extends FormRequest
 {
     /**
@@ -47,4 +48,23 @@ class TercumeRequest extends FormRequest
 
         return Arr::collapse($return);
     }
+
+    public function messages()
+    {
+        Toastr::error('Error', 'failed');
+        $messages = [
+             'title:ar'  => 'Acreage field must be greater then 0.'
+        ];
+    
+        return $messages;
+    }
+    
+    
+        protected function formatErrors(Validator $validator)
+        {
+          
+           
+    
+            return $validator->errors()->all();
+        }
 }

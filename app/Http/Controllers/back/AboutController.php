@@ -27,6 +27,9 @@ class AboutController extends Controller
       if ($checkedPhoto){
           $requests['image']=$checkedPhoto;
       }
+      else{
+        $requests['image']=$about->image;
+      }
       $about->update($requests);
     //  toastr()->success('sdd');
       return redirect()->back()->with('success','');

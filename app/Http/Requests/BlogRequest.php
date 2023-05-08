@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
 use App\Models\Language;
+use Illuminate\Contracts\Validation\Validator as ValidationValidator;
 use Illuminate\Support\Facades\Validator;
 use Yoeunes\Toastr\Facades\Toastr;
 
@@ -61,20 +62,20 @@ class BlogRequest extends FormRequest
     public function messages()
     {
         Toastr::error('Error', 'failed');
-       /*  $messages = [
+        $messages = [
              'title:ar'  => 'Acreage field must be greater then 0.'
         ];
     
-        return $messages; */
+        return $messages;
     }
     
     
-       /*  protected function formatErrors(Validator $validator)
+        protected function formatErrors(ValidationValidator $validator)
         {
           
            
     
             return $validator->errors()->all();
-        } */
+        }
     
 }

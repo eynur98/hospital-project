@@ -27,7 +27,7 @@ class CertificateRequest extends FormRequest
             'status'=>['max:2'],
             'order'=>['max:11'],
             'at_home'=>['max:2'],
-            'image'=>['max:2024']
+            'image'=>['required','max:2024']
         ];
     }
 }

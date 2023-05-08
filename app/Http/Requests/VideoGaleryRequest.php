@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 
+use Illuminate\Foundation\Http\FormRequest;
+use Yoeunes\Toastr\Facades\Toastr;
+use Illuminate\Contracts\Validation\Validator;
 class VideoGaleryRequest extends FormRequest
 {
     /**
@@ -30,4 +32,23 @@ class VideoGaleryRequest extends FormRequest
             'video'=>['required','max:2024']
         ];
     }
+
+    public function messages()
+    {
+        Toastr::error('Error', 'failed');
+        $messages = [
+             'title:ar'  => 'Acreage field must be greater then 0.'
+        ];
+    
+        return $messages;
+    }
+    
+    
+        protected function formatErrors(Validator $validator)
+        {
+          
+           
+    
+            return $validator->errors()->all();
+        }
 }

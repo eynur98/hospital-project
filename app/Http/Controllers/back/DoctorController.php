@@ -123,7 +123,9 @@ class DoctorController extends Controller
       if ($checkedPhoto){
           $requests['image']=$checkedPhoto;
       }
-      
+      else{
+        $requests['image']=$project->image;
+      }
         if(!isset($requests['status'])){
             $requests['status']='0';
         }
