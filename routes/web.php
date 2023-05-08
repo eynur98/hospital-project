@@ -49,6 +49,7 @@ Route::get('/images', [HomeController:: class, 'image_gallery'])->name('image.ga
 Route::get('/service1/{slug}', [HomeController:: class, 'service_detail'])->name('service.detail');
 
 
+
 //});
 Route::post('/comment', [HomeController:: class, 'comment'])->name('comment');
 Route::get('/search', [HomeController:: class, 'search'])->name('search');

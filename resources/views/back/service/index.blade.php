@@ -103,7 +103,7 @@
                                             @error("title:".$item->code)
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
+                                          <textarea id="editor-{{$item->code}}" name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10"></textarea>
                                           @error("description:".$item->code)
                                           <div class="text-danger">{{ $message }}</div>
                                       @enderror
