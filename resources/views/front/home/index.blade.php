@@ -24,7 +24,7 @@
                     data-start="1500">
                     <div class="slide-content-box mar-lft">
                         <h1>{{$item->title}}</h1>
-                        <p>{{$item->description}}</p>
+                        <p>{!!$item->description!!}</p>
                         <div class="button">
                             <a class="#" href="{{$item->link}}">{{$item->link_title}}</a>
                            {{--  <a class="btn-style-two" href="{{}}">Departments</a>   --}}         

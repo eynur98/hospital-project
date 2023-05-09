@@ -102,7 +102,7 @@
                                             @error("title:".$item->code)
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
-                                          <textarea name="description:{{$item->code}}"  class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
+                                          <textarea name="description:{{$item->code}}" id="editor-{{$item->code}}"   class="form-control mt-3"  cols="30" rows="10">{{$item->code}}</textarea>
                                           @error("description:".$item->code)
                                           <div class="text-danger">{{ $message }}</div>
                                       @enderror
@@ -226,7 +226,16 @@
                    data.translations.forEach(item => {
                   let custom_input=  $("<div/>").addClass('title__input').attr('id','titleInput'+item.locale)
                    $('.titlesParent').append(custom_input.append($("<input/>").addClass('form-control ').attr({ "name": 'title:'+item.locale,'value':item.title})))
-                   $('.titlesParent').append(custom_input.append($('<textarea/>').addClass('form-control mt-3').attr({"name":'description:'+item.locale,"cols":"30", "rows":"10"}).val(item.description)))
+                   $('.titlesParent').append(custom_input.append($('<textarea/>').addClass('form-control mt-3').attr({"name":'description:'+item.locale,"cols":"30", "rows":"10","id":"editor-"+item.locale}).val(item.description)))
+               
+                   ClassicEditor
+        .create(document.querySelector('#editor-'+item.locale))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
                 });
           }
            });
@@ -234,13 +243,18 @@
 
 
 
-
-
-
-
-
-
-
-
     </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
+    @foreach ($languages as $item)
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor-{{$item->code}}'))
+            .then(editor => {
+                console.log(editor);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    @endforeach
     @endsection

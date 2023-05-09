@@ -200,7 +200,7 @@
         ;
        function formEditButton(id_) {
         $('#checkbox').prop("checked", false)
-           $("#partner_form").attr('action','http://127.0.0.1:8000/slider/'+id_)
+           $("#partner_form").attr('action','http://127.0.0.1:8001/slider/'+id_)
            $("#partner_form").append( `<input type="hidden" name="_method" value="PUT" id="hidden__">`)
            $('#partners_modalLabel').text('Slayderi yenilə')
            $.ajax({
@@ -231,6 +231,15 @@
                    $('.titlesParent').append(custom_input.append($("<input/>").addClass('form-control ').attr({ "name": 'title:'+item.locale,'value':item.title})))
                    $('.titlesParent').append(custom_input.append($("<input/>").addClass('form-control ').attr({ "name": 'link_title:'+item.locale,'value':item.link_title})))
                    $('.titlesParent').append(custom_input.append($('<textarea/>').addClass('form-control mt-3').attr({"name":'description:'+item.locale,"cols":"30", "rows":"10","id":"editor-"+item.locale}).val(item.description)))
+                   ClassicEditor
+        .create(document.querySelector('#editor-'+item.locale))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+               
                 });
           }
            });
