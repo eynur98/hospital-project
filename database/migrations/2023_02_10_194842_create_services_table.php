@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
             $table->string('slug')->nullable();
             $table->enum('status',['1','0'])->default('1');
             $table->enum('at_home',['1','0'])->default('1');

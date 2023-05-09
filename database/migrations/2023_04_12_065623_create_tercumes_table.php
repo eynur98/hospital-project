@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tercumes', function (Blueprint $table) {
             $table->id();
             $table->string('key');
-          
+            $table->text('text');
             $table->timestamps();
         });
     }

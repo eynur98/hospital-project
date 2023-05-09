@@ -39,7 +39,7 @@
             <div class="col-md-3">
                 <ul class="nav nav-tabs tab-menu">
                     @foreach ($doctor_positons as $item)
-                    <li><a href="#{{$item->id}}" data-toggle="tab">{{$item->translate(App::getLocale())->title}}</a></li>
+                    <li><a href="#{{$item->id}}" data-toggle="tab">{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</a></li>
                     @endforeach
                  
                 </ul>   
@@ -58,13 +58,13 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="single-team-member">
                                     <div class="img-holder">
-                                        <img src="{{asset($doctor->image) }}" alt="Awesome Image">
+                                        <img src="{{asset('uploads/'.$doctor->image) }}" alt="Awesome Image">
                                         <div class="overlay-style">
                                             <div class="box">
                                                 <div class="content">
                                                     <div class="top">
-                                                        <h3>{{$doctor->translate()->title}}</h3>
-                                                             <span>{{$doctor->doctor_pos->title ?? ''}}</span>
+                                                        <h3>{{$doctor->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
+                                                             <span>{{$doctor->doctor_pos->getTranslatedAttribute('title', App::getLocale(), 'en') ?? ''}}</span>
                                                     </div>
                                                     <span class="border"></span>
                                                     <div class="bottom">
@@ -77,8 +77,8 @@
                                             </div>
                                         </div>
                                         <div class="text-holder">
-                                            <h3>{{$doctor->translate()->title}}</h3> 
-                                                 <span>{{$doctor->doctor_pos->title ?? ''}}</span>   
+                                            <h3>{{$doctor->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3> 
+                                                 <span>{{$doctor->doctor_pos->getTranslatedAttribute('title', App::getLocale(), 'en') ?? ''}}</span>   
                                         </div>    
                                     </div>
                                 </div>

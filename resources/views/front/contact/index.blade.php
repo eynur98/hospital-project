@@ -85,7 +85,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h5><span>{{ __('lang.Address') }}:</span> {!! $contact->translate(App::getLocale())->address !!}</h5>
+                                <h5><span>{{ __('lang.Address') }}:</span> {!! $contact->getTranslatedAttribute('address', App::getLocale(), 'en') !!}</h5>
                             </div>
                         </li>
                         <li>

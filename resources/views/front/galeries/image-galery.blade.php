@@ -40,11 +40,11 @@
            
 
             <!--Start single project item-->
-            <a target="__blanc" href="{{ asset($item->image) }}">
+            <a target="__blanc" href="{{ asset('uploads/'.$item->image) }}">
             <div class="col-md-4 col-sm-4 col-xs-12 filter-item robustness workouts">
                 <div class="single-project-item">
                     <div class="img-holder">
-                        <img src="{{ asset($item->image) }}" alt="Awesome Image">
+                        <img src="{{ asset('uploads/'.$item->image) }}" alt="Awesome Image">
                         {{-- <div class="overlay-style-one">
                             <div class="box">
                                 <div class="content">

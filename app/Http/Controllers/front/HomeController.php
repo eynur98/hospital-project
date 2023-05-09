@@ -25,6 +25,7 @@ use App\Models\VideoGalery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
@@ -32,47 +33,48 @@ class HomeController extends Controller
 
     public function __construct(){
 
-        $services = Service::where('status',1)->get();
+        $services = Service::withTranslations()->where('status',1)->get();
 
         View::share('services', $services);
 
-        $doctor_positons = DoctorPosition::where('status',1)->get();
+        $doctor_positons = DoctorPosition::withTranslations()->where('status',1)->get();
 
         View::share('doctor_positons', $doctor_positons);
 
-        $news_categories = NewsCategory::where('status',1)->get();
+        $news_categories = NewsCategory::withTranslations()->where('status',1)->get();
 
         View::share('news_categories', $news_categories);
 
-        $contact = Contact::first();
+        $contact = Contact::first() ?? [];
 
         View::share('contact', $contact);
 
     }
     public function index(){
-        $sliders = Slider::where('status',1)->get();
+        $sliders = Slider::withTranslations()->where('status',1)->get();
       
-        $blogs = Blog::where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        $blogs = Blog::withTranslations()->where('status', 1)->where('at_home', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
        // $services = Service::where('slug', 'LIKE', '%plastic-surgery%')->get();
-         $doctors = Doctor::where('status',1)->get();
-        $statics = Statistic::where('status', 1)->get();
+         $doctors = Doctor::withTranslations()->where('status',1)->where('at_home', 1)->get();
+        $statics = Statistic::withTranslations()->where('status', 1)->where('at_home', 1)->get();
          $comments = Comment::where('status',1)->get();
          
        return view('front.home.index',compact('sliders','blogs','doctors', 'statics','comments'));
    }
 
     public function news($slug){
-        $news_cat=NewsCategory::where('slug',$slug)->first() ?? abort(404);
-        $news = News::where('news_category_id',$news_cat->id)->where('status',1)->paginate(18);
-        $last_news = News::where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        $news_cat=NewsCategory::withTranslations()->where('slug',$slug)->first() ?? abort(404);
+        $news = News::withTranslations()->where('news_category_id',$news_cat->id)->where('status',1)->paginate(18);
+        $last_news = News::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
         return view('front.news.index',compact('news','last_news'));
     }
 
 
     public function newsDetail($slug){
-        $news = News::whereSlug($slug)->first();
-        $news_category=NewsCategory::where('id',$news->news_category_id)->first() ?? [];
-        $last_news = News::where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        $news = News::withTranslations()->whereSlug($slug)->first() ?? abort(404);
+      //  dd($news);
+        $news_category=NewsCategory::withTranslations()->where('id',$news->news_category_id)->first() ?? [];
+        $last_news = News::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
     
       if (!Cookie::get('news_' . $news->id)) {
        
@@ -83,16 +85,16 @@ class HomeController extends Controller
     }
 
     public function doctor($slug){
-        $doctor_position = DoctorPosition::whereSlug($slug)->first();
+        $doctor_position = DoctorPosition::withTranslations()->whereSlug($slug)->first();
     
      /*    $doctors = Doctor::where('doctor_position_id',$doctor_position->id)->where('status',1)->paginate(18); */
       /*   dd($doctors); */
         return view('front.doctor.index',compact('doctor_position'));
     }
     public function doctor_detail($slug){
-        $news = Doctor::whereSlug($slug)->first();
+        $news = Doctor::withTranslations()->whereSlug($slug)->first();
         $news_category=DoctorPosition::where('id','<>',$news->news_category_id)->first() ?? [];
-        $similar_products = News::where('news_category_id', $news_category->id)->inRandomOrder()->get() ?? [];
+        $similar_products = News::withTranslations()->where('news_category_id', $news_category->id)->inRandomOrder()->get() ?? [];
     
     //   if (!Cookie::get('news_' . $news->id)) {
        
@@ -104,24 +106,25 @@ class HomeController extends Controller
 
     public function blog(){
        
-        $news = Blog::where('status',1)->paginate(18);
-        $last_news = Blog::where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        $news = Blog::withTranslations()->where('status',1)->paginate(18);
+        $last_news = Blog::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
         return view('front.blogs.index',compact('news','last_news'));
     }
 
     public function blog_detail($slug){
-        $news = Blog::whereSlug($slug)->first() ?? abort(404);
+        $news = Blog::withTranslations()->whereSlug($slug)->first() ?? abort(404);
         if (!Cookie::get('news_' . $news->id)) {
        
             $news->increment('view_count');
          
         }
-        return view('front.blog.blog',compact('news'));
+        $last_news = Blog::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        return view('front.blogs.blog',compact('news','last_news'));
     }
 
     public function about(){
 
-        return view('front.about.index',['about'=>About::first(),'doctors'=>Doctor::where('status',1)->limit(4)->get(),  'statics' => Statistic::where('status', 1)->get()]);
+        return view('front.about.index',['about'=>About::withTranslations()->first(),'doctors'=>Doctor::withTranslations()->where('status',1)->limit(4)->get(),  'statics' => Statistic::withTranslations()->where('status', 1)->get()]);
     }
 
     public function elaqe(){
@@ -137,7 +140,7 @@ class HomeController extends Controller
 
     public function service_detail($slug){
         $service = Service::whereSlug($slug)->first() ?? abort(404);
-        $doctors = Doctor::where('status',1)->limit(3)->get();
+        $doctors = Doctor::withTranslations()->where('status',1)->limit(3)->get();
         return view('front.services.index',compact('service','doctors'));
     }
 
@@ -164,19 +167,21 @@ class HomeController extends Controller
     {
       
         if($request->blog !=null){
-            $news = Blog::join('blog_translations', 'blogs.id', '=', 'blog_translations.blog_id')
-            ->where('blog_translations.title', 'like', '%' . $request->blog . '%')->where('news_translations.locale',App::getLocale())
-            ->where('blogs.status', 1)
+            $news = Blog::withTranslations()
+            ->where('title', 'like', '%' . $request->blog . '%')
+            ->where('status', 1)
             ->paginate(18);
-            return view('front.blog.index',compact('news'));
+            $last_news = Blog::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
+            return view('front.blogs.index',compact('news','last_news'));
         }
         if($request->news !=null){
-                  $news = News::join('news_translations', 'news.id', '=', 'news_translations.news_id')
-            ->where('news_translations.title', 'like', '%' . $request->news . '%')->where('news_translations.locale',App::getLocale())
-            ->where('news.status', 1)
+                  $news = News::withTranslations()
+            ->where('title', 'like', '%' . $request->news . '%')
+            ->where('status', 1)
             ->paginate(18);
+            $last_news = Blog::withTranslations()->where('status', 1)->orderBy('created_at', 'DESC')->limit(3)->get();
          //   dd($news);
-            return view('front.news.index',compact('news'));
+            return view('front.news.index',compact('news','last_news'));
         }
         // if($request->doctor !=null){
         //     $news = Doctor::where('title', 'like', '%' . $request->doctor . '%')->where('status',1)->get();

@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('doctor_position_id');
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->string('slug');
             $table->enum('status',['1','0'])->default('1');
             $table->enum('at_home',['1','0'])->default('1');

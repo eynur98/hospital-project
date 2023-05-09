@@ -37,15 +37,15 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="img-holder">
-                    <img src="{{ asset($about->image) }}" alt="Awesome Image">    
+                    <img src="{{ asset('uploads/'.$about->image) }}" alt="Awesome Image">    
                 </div>
               
             </div>
             <div class="col-md-6">
                 <div class="text-holder">
                     <div class="title">
-                        <h1>{{ $about->translate(App::getLocale())->title }}</h1>
-                        <p>{!! $about->translate(App::getLocale())->text !!}</p>    
+                        <h1>{{ $about->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h1>
+                        <p>{!! $about->getTranslatedAttribute('text', App::getLocale(), 'en') !!}</p>    
                     </div>
                     
                     {{-- <div class="button">
@@ -330,7 +330,7 @@
                                 <span class="flaticon-medical"></span> 
                             </div>
                             <h1><span class="timer" data-from="1" data-to="{{$item->statistica}}" data-speed="5000" data-refresh-interval="50">{{$item->statistica}}</span></h1>
-                            <h3>{{$item->translate(App::getLocale())->title}}</h3>
+                            <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                         </div>
                     </li>
                     @endforeach
@@ -361,12 +361,12 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-team-member">
                     <div class="img-holder">
-                        <img src="{{asset($item->image) }}" alt="Awesome Image">
+                        <img src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                         <div class="overlay-style">
                             <div class="box">
                                 <div class="content">
                                     <div class="top">
-                                        <h3>{{$item->translate()->title}}</h3>
+                                        <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                                              <span>{{$item->doctor_pos->title}}</span>
                                     </div>
                                     <span class="border"></span>
@@ -380,8 +380,8 @@
                             </div>
                         </div>
                         <div class="text-holder">
-                            <h3>{{$item->translate()->title}}</h3> 
-                                 <span>{{$item->doctor_pos->title}}</span>   
+                            <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3> 
+                                 <span>{{$item->doctor_pos->getTranslatedAttribute('title', App::getLocale(), 'en')}}</span>   
                         </div>    
                     </div>
                 </div>

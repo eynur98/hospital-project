@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('doctor_positions', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('slug');
             $table->enum('status',['1','0'])->default('1');
             $table->unsignedInteger('order')->nullable();

@@ -7,7 +7,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>{{ $service->translate(App::getLocale())->title }}</h1>
+	                <h1>{{ $service->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -22,7 +22,7 @@
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
                             <li><a href="departments.html">Department</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">{{ $service->translate(App::getLocale())->title }}</li>
+                            <li class="active">{{ $service->getTranslatedAttribute('title', App::getLocale(), 'en') }}</li>
                         </ul>
                     </div>
                     
@@ -40,13 +40,13 @@
             <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12 pull-right">  
                 <div class="tab-box">
                     <div class="img-holder">
-                        <img src="{{ asset($service->image) }}" alt="Awesome Image">    
+                        <img src="{{ asset('uploads/'.$service->image) }}" alt="Awesome Image">    
                     </div>
                   
                 </div>
                 <hr>
                 <div class="text-box">
-                    <p>{!! $service->translate(App::getLocale())->description !!}</p>
+                    <p>{!! $service->getTranslatedAttribute('description', App::getLocale(), 'en') !!}</p>
                                   </div> 
                 
             
@@ -124,12 +124,12 @@
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div class="single-team-member">
                                 <div class="img-holder">
-                                    <img src="{{asset($item->image) }}" alt="Awesome Image">
+                                    <img src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style">
                                         <div class="box">
                                             <div class="content">
                                                 <div class="top">
-                                                    <h3>{{$item->translate()->title}}</h3>
+                                                    <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                                                          <span>{{$item->doctor_pos->title}}</span>
                                                 </div>
                                                 <span class="border"></span>
@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                     <div class="text-holder">
-                                        <h3>{{$item->translate()->title}}</h3> 
+                                        <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3> 
                                              <span>{{$item->doctor_pos->title}}</span>   
                                     </div>    
                                 </div>
@@ -169,7 +169,7 @@
                                 
                            
                             <li>
-                                <a href="{{ route('service.detail',$item->slug) }}">{{ $item->translate(App::getLocale())->title }}</a>
+                                <a href="{{ route('service.detail',$item->slug) }}">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</a>
                             </li>
                             @endforeach
                           

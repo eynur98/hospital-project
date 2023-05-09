@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('statistica');
             $table->enum('status',['1','0'])->default('1');
             $table->enum('at_home',['1','0'])->default('1');

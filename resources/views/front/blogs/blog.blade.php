@@ -6,7 +6,7 @@
 	    <div class="row">
 	        <div class="col-md-12">
 	            <div class="breadcrumbs">
-	                <h1>{{ $news->translate(App::getLocale())->title }}</h1>
+	                <h1>{{ $news->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -19,7 +19,7 @@
                         <ul>
                             <li><a href="{{ route('home') }}">{{ __('lang.Home') }}</a></li>
                             <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                            <li class="active">{{ $news->translate(App::getLocale())->title }}</li>
+                            <li class="active">{{ $news->getTranslatedAttribute('title', App::getLocale(), 'en') }}</li>
                         </ul>
                     </div>
                      
@@ -38,12 +38,12 @@
                 <div class="blog-post">
                     <div class="single-blog-item">
                         <div class="img-holder">
-                            <img src="{{ asset($news->image) }}" alt="Awesome Image">
+                            <img src="{{ asset('uploads/'.$news->image) }}" alt="Awesome Image">
                         </div>
                         <div class="text-holder">
-                            <h3 class="blog-title">{{ $news->translate(App::getLocale())->title }}</h3>
+                            <h3 class="blog-title">{{ $news->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h3>
                         <p>
-                            {{ $news->translate(App::getLocale())->description }}
+                            {!! $news->getTranslatedAttribute('description', App::getLocale(), 'en') !!}
                         </p>
                             <!--End bottom content box-->
                             <ul class="meta-info">
@@ -101,7 +101,7 @@
                           
                             <li>
                                 <div class="img-holder">
-                                    <img src="{{ asset($item->image) }}" alt="Awesome Image">
+                                    <img src="{{ asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
@@ -111,7 +111,7 @@
                                     </div>
                                 </div>
                                 <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">{{ $item->translate(App::getLocale())->title }}</h5></a>
+                                    <a href="#"><h5 class="post-title">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h5></a>
                                     <h6 class="post-date"> {{ $item->created_at->format('M d, Y') }}</h6>
                                 </div>
                             </li>

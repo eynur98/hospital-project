@@ -9,6 +9,7 @@ use App\Http\Controllers\front\HomeController;
 use App\Http\Controllers\PaginationController;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
+use TCG\Voyager\Facades\Voyager;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,50 +58,21 @@ Route::get('/search', [HomeController:: class, 'search'])->name('search');
 
 
 
-//admin
-Route::get('/admin', [AuthController:: class, 'login'])->name('login');
-Route::post('/admin-post', [AuthController:: class, 'login_post'])->name('log_in');
 
-
-/* Route::middleware('auth:sanctum')->group(function() { */
-    Route::resource('partners', 'App\Http\Controllers\PartnerController')->names('partner');
-    Route::get('about', [App\Http\Controllers\back\AboutController::class,'index'])->name('about.index');
-    Route::post('about', [App\Http\Controllers\back\AboutController::class,'update'])->name('about.update');
-    Route::resource('news-categories', 'App\Http\Controllers\back\NewsCategoryController')->names('news_category');
-    Route::resource('news', 'App\Http\Controllers\back\NewsController')->names('news');
-    Route::resource('service', 'App\Http\Controllers\back\ServiceController')->names('service');
-    Route::resource('image-gallery', 'App\Http\Controllers\back\ImageGaleryController')->names('certificate');
-    Route::resource('video-gallery', 'App\Http\Controllers\back\VideoGallery')->names('vgallery');
-    Route::resource('cerificate', 'App\Http\Controllers\back\CertificateController')->names('certificates');
-    Route::resource('statistica', 'App\Http\Controllers\back\StatisticaController')->names('statistica');
-    Route::get('/comment/{id}', [NewsController:: class, 'comment'])->name('news.comment');
-    Route::post('/comment-status/{id}', [NewsController:: class, 'comment_status'])->name('comment.status');
-    Route::delete('/comment-delete/{id}', [NewsController:: class, 'comment_destroy'])->name('comment.destroy');
-
-   // Route::resource('doctor-position', 'App\Http\Controllers\back\DoctorPositionController')->names('project.category');
-    Route::resource('doctor', 'App\Http\Controllers\back\DoctorController')->names('project');
-    Route::resource('blog', 'App\Http\Controllers\back\BlogController')->names('support');
-  //  Route::resource('banner', 'App\Http\Controllers\back\BannerController')->names('banner');
-    Route::resource('slider', 'App\Http\Controllers\back\SliderController')->names('slider');
-    Route::resource('category', 'App\Http\Controllers\back\CategoryController')->names('category');
-    Route::resource('product', 'App\Http\Controllers\back\ProductController')->names('product');
-   Route::resource('doctor-position', 'App\Http\Controllers\back\DoctorPositionController')->names('brend');
-    Route::resource('tercume', 'App\Http\Controllers\back\TercumeController')->names('tercume');
-    Route::get('contact', [App\Http\Controllers\back\ContactController::class,'index'])->name('contact.index');
-    Route::post('contact', [App\Http\Controllers\back\ContactController::class,'update'])->name('contact.update');
-/*     Route::resource('contact', 'App\Http\Controllers\back\ContactController')->names('contact'); */
-    Route::get('delete-image/{id}', [App\Http\Controllers\back\ProductController::class, 'image_destroy'])->name('image.destroy');
-    Route::get('delete-file/{id}', [App\Http\Controllers\back\ProductController::class, 'file_destroy'])->name('file.destroy');
-
-    Route::delete('delete-appointment/{id}', [App\Http\Controllers\back\AppointmentController::class, 'delete'])->name('appointment.destroy');
-    Route::post('create-appointment', [App\Http\Controllers\back\AppointmentController::class, 'store'])->name('appointment.add');
-    Route::get('appointment', [App\Http\Controllers\back\AppointmentController::class, 'index'])->name('appointment.index');
-    Route::get('/admin/dash', function () {
-        return view('back.dashboard');
-    })->name('dashboard');
-    Route::get('/admin/logout', [AuthController:: class, 'logout'])->name('logout');
 
 /* }); */
+Route::delete('delete-appointment/{id}', [App\Http\Controllers\back\AppointmentController::class, 'delete'])->name('appointment.destroy');
+Route::post('create-appointment', [App\Http\Controllers\back\AppointmentController::class, 'store'])->name('appointment.add');
+Route::get('appointment', [App\Http\Controllers\back\AppointmentController::class, 'index'])->name('appointment.index');
+Route::get('/comment/{id}', [NewsController:: class, 'comment'])->name('news.comment');
+Route::post('/comment-status/{id}', [NewsController:: class, 'comment_status'])->name('comment.status');
+Route::delete('/comment-delete/{id}', [NewsController:: class, 'comment_destroy'])->name('comment.destroy');
 
 
 
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+
+ 
+});

@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
-class Statistic extends Model implements TranslatableContract
+use TCG\Voyager\Traits\Translatable;
+class Statistic extends Model
 {
     use HasFactory, Translatable;
-    public $translatedAttributes = ['title' ];
+
+    protected $table = 'statistika';
+
+    protected $translatable = ['title' ];
     protected $fillable = ['statistica','image','status','at_home']; 
 }

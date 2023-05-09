@@ -9,7 +9,7 @@
                 
            
             <li data-transition="rs-20">
-                <img src="{{asset($item->image) }}"  alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1">
+                <img src="{{asset('uploads/'.$item->image) }}"  alt="" width="1920" height="700" data-bgposition="top center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="1">
                 
                 <div class="tp-caption  tp-resizeme" 
                     data-x="left" data-hoffset="0" 
@@ -162,14 +162,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="text-box">
-                                                <h3>{{$item->translate(App::getLocale())->title}}</h3>
-                                                <p>{!!Str::limit($item->translate(App::getLocale())->description,150)!!}</p>
+                                                <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
+                                                <p>{!!Str::limit($item->getTranslatedAttribute('description', App::getLocale(), 'en'),150)!!}</p>
                                                 <a class="thm-btn" href="{{route('service.detail',$item->slug)}}">Read More</a>
                                             </div>    
                                         </div>    
                                         <div class="col-md-6">
                                             <div class="img-box">
-                                                <img src="{{asset($item->image) }}" alt="Awesome Image">
+                                                <img src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                             </div>    
                                         </div>    
                                     </div>
@@ -184,7 +184,7 @@
                             <li style="width: 22%"@if ($key==0) class="active" @endif>
                                 <a href="#{{ $item->slug }}" data-toggle="tab">
                                     <div  class="img-holder">
-                                        <img  src="{{asset($item->image) }}" alt="Awesome Image">
+                                        <img  src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                         <div class="overlay-style-one">
                                             <div class="box">
                                                 <div class="content">
@@ -196,7 +196,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                <h3>{{$item->translate(App::getLocale())->title}}</h3>
+                                <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                             </li>
                             @endforeach
                            
@@ -209,7 +209,7 @@
                             <li @if ($key==0) class="active" @endif>
                                 <a href="#{{$item->slug}}" data-toggle="tab">
                                     <div class="img-holder">
-                                        <img style="width: 22%" src="{{asset($item->image) }}" alt="Awesome Image">
+                                        <img style="width: 22%" src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                         <div class="overlay-style-one">
                                             <div class="box">
                                                 <div class="content">
@@ -251,12 +251,12 @@
             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                 <div class="single-team-member">
                     <div class="img-holder">
-                        <img src="{{asset($item->image) }}" alt="Awesome Image">
+                        <img src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                         <div class="overlay-style">
                             <div class="box">
                                 <div class="content">
                                     <div class="top">
-                                        <h3>{{$item->translate()->title}}</h3>
+                                        <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                                         <span>{{$item->doctor_pos->title}}</span>
                                     </div>
                                     <span class="border"></span>
@@ -270,8 +270,8 @@
                             </div>
                         </div>
                         <div class="text-holder">
-                            <h3>{{$item->translate()->title}}</h3> 
-                            <span>{{$item->doctor_pos->translate()->title}}</span>   
+                            <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3> 
+                            <span>{{$item->doctor_pos->getTranslatedAttribute('title', App::getLocale(), 'en')}}</span>   
                         </div>    
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                                 <span class="flaticon-medical"></span> 
                             </div>
                             <h1><span class="timer" data-from="1" data-to="{{$item->statistica}}" data-speed="5000" data-refresh-interval="50">{{$item->statistica}}</span></h1>
-                            <h3>{{$item->translate(App::getLocale())->title}}</h3>
+                            <h3>{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                         </div>
                     </li>
                     @endforeach
@@ -371,7 +371,7 @@
             <div class="col-md-4">
                 <div class="single-blog-item">
                     <div class="img-holder">
-                        <img src="{{asset($item->image) }}" alt="Awesome Image">
+                        <img src="{{asset('uploads/'.$item->image) }}" alt="Awesome Image">
                         <div class="overlay-style-one">
                             <div class="box">
                                 <div class="content">
@@ -382,10 +382,10 @@
                     </div>
                     <div class="text-holder">
                         <a href="{{route('blog.detail',$item->slug)}}">
-                            <h3 class="blog-title">{{$item->translate(App::getLocale())->title}}</h3>
+                            <h3 class="blog-title">{{$item->getTranslatedAttribute('title', App::getLocale(), 'en')}}</h3>
                         </a>
                         <div class="text">
-                            <p>{!!Str::limit($item->translate(App::getLocale())->description,150,'...')!!}</p>
+                            <p>{!!Str::limit($item->getTranslatedAttribute('description', App::getLocale(), 'en'),150,'...')!!}</p>
                         </div>
                         <ul class="meta-info">
                             <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>{{$item->created_at->format('M d, Y')}}</a></li>

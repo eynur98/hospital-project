@@ -47,7 +47,7 @@
                         <div class="col-md-6">   
                             <div class="single-blog-item wow fadeInUp" data-wow-delay="0s" data-wow-duration="1s" data-wow-offset="0">
                                 <div class="img-holder">
-                                    <img src="{{ asset($item->image) }}" alt="Awesome Image">
+                                    <img src="{{ asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content"> 
@@ -58,10 +58,10 @@
                                 </div>
                                 <div class="text-holder">
                                     <a href="{{ route('news.detail',$item->slug) }}">
-                                        <h3 class="blog-title">{{ $item->translate(App::getLocale())->title ?? '' }}</h3>
+                                        <h3 class="blog-title">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') ?? '' }}</h3>
                                     </a>
                                     <div class="text">
-                                        <p>{{ Str::limit($item->description, 150, '...') ?? '' }}</p>
+                                        <p>{!! Str::limit($item->description, 150, '...') ?? '' !!}</p>
                                     </div>
                                     <ul class="meta-info">
                                         <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{ $item->created_at->format('M d, Y') }}</a></li>
@@ -103,7 +103,7 @@
                         </div>
                         <ul class="categories clearfix">
                             @foreach ($news_categories as $item)
-                            <li><a href="#">{{ $item->translate(App::getLocale())->title }}<span>({{ $item->news()->count() }})</span></a></li>
+                            <li><a href="#">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}<span>({{ $item->news()->count() }})</span></a></li>
                             @endforeach
                            
                           
@@ -121,7 +121,7 @@
                           
                             <li>
                                 <div class="img-holder">
-                                    <img src="{{ asset($item->image) }}" alt="Awesome Image">
+                                    <img src="{{ asset('uploads/'.$item->image) }}" alt="Awesome Image">
                                     <div class="overlay-style-one">
                                         <div class="box">
                                             <div class="content">
@@ -131,7 +131,7 @@
                                     </div>
                                 </div>
                                 <div class="title-holder">
-                                    <a href="#"><h5 class="post-title">{{ $item->translate(App::getLocale())->title }}</h5></a>
+                                    <a href="#"><h5 class="post-title">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</h5></a>
                                     <h6 class="post-date"> {{ $item->created_at->format('M d, Y') }}</h6>
                                 </div>
                             </li>

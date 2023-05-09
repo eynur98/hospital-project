@@ -87,7 +87,7 @@
                                 <span class="flaticon-pin"></span>
                             </div>
                             <div class="text-holder">
-                                <h4>{{ $contact->translate(App::getLocale())->address ?? ''}}</h4>
+                                <h4>{{ $contact->getTranslatedAttribute('address', App::getLocale(), 'en') ?? ''}}</h4>
                                
                             </div>
                         </li>
@@ -155,7 +155,7 @@
                             <li class="dropdown"><a href="#">{{ __('lang.Doctors') }}</a>
                                 <ul>
                                     @foreach ($doctor_positons as $item)
-                                    <li><a href="{{route('doctors',$item->slug)}}">{{ $item->translate(App::getLocale())->title }}</a></li>
+                                    <li><a href="{{route('doctors',$item->slug)}}">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</a></li>
                                     @endforeach
                                    
                                   
@@ -165,7 +165,7 @@
                                 <ul>
                                     @foreach ($services as $item)
                                   
-                                    <li><a href="{{ route('service.detail',$item->slug) }}">{{ $item->translate(App::getLocale())->title }}</a></li>
+                                    <li><a href="{{ route('service.detail',$item->slug) }}">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</a></li>
                                     @endforeach
                                   
                                    
@@ -175,7 +175,7 @@
                             <li class="dropdown"><a href="#">{{ __('lang.news') }}</a>
                                 <ul>
                                     @foreach ($news_categories as $item)
-                                    <li><a href="{{ route('news',$item->slug) }}">{{ $item->translate(App::getLocale())->title }}</a></li>
+                                    <li><a href="{{ route('news',$item->slug) }}">{{ $item->getTranslatedAttribute('title', App::getLocale(), 'en') }}</a></li>
                                     @endforeach
                                   
                                     

@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
+use TCG\Voyager\Traits\Translatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class News extends Model implements TranslatableContract
+class News extends Model 
 {
     use HasFactory, Translatable;
-    public $translatedAttributes = ['title', 'description' ];
+    protected $translatable = ['title', 'description' ];
     protected $fillable = ['news_category_id','slug','order','image','status','at_home','view_count'];
 
     public function news_category(){
